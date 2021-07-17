@@ -1,0 +1,5 @@
+db name: tpfinal
+db user: tpfinal
+db pass: tpfinal
+
+todos los privilegios
