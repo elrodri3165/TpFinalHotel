@@ -20,7 +20,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Cliente {
     
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id_Cliente;
     
