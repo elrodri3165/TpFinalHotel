@@ -5,6 +5,7 @@
  */
 package Logica;
 
+import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,11 +17,11 @@ import javax.persistence.Id;
  * @author Rodrigo Gallo
  */
 @Entity
-public class Habitacion {
+public class Habitacion implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int idHabitacion;
+    Long idHabitacion;
     
     @Basic
     String Piso;
@@ -31,7 +32,7 @@ public class Habitacion {
     public Habitacion() {
     }
 
-    public Habitacion(int idHabitacion, String Piso, String Nombre, String Tipo, int Precio) {
+    public Habitacion(Long idHabitacion, String Piso, String Nombre, String Tipo, int Precio) {
         this.idHabitacion = idHabitacion;
         this.Piso = Piso;
         this.Nombre = Nombre;
@@ -39,7 +40,7 @@ public class Habitacion {
         this.Precio = Precio;
     }
 
-    public int getIdHabitacion() {
+    public Long getIdHabitacion() {
         return idHabitacion;
     }
 
@@ -59,7 +60,7 @@ public class Habitacion {
         return Precio;
     }
 
-    public void setIdHabitacion(int idHabitacion) {
+    public void setIdHabitacion(Long idHabitacion) {
         this.idHabitacion = idHabitacion;
     }
 

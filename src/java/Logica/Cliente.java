@@ -23,7 +23,7 @@ public class Cliente implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int idCliente;
+    Long idCliente;
     
     @Basic
     String Apellido;
@@ -37,7 +37,7 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String Apellido, String Nombre, String Dni, String Email, List<Reserva> listaReserva) {
+    public Cliente(Long idCliente, String Apellido, String Nombre, String Dni, String Email, List<Reserva> listaReserva) {
         this.idCliente = idCliente;
         this.Apellido = Apellido;
         this.Nombre = Nombre;
@@ -46,7 +46,7 @@ public class Cliente implements Serializable {
         this.listaReserva = listaReserva;
     }
 
-    public int getIdCliente() {
+    public Long getIdCliente() {
         return idCliente;
     }
 
@@ -70,7 +70,7 @@ public class Cliente implements Serializable {
         return listaReserva;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(Long idCliente) {
         this.idCliente = idCliente;
     }
 

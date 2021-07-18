@@ -3,9 +3,7 @@
   <persistence-unit name="TpFinalHotelPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Logica.Empleado</class>
-    <class>Logica.Cliente</class>
-    <class>Logica.Habitacion</class>
-    <class>Logica.Reserva</class>
+    <class>Logica.ClienteEntity</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tpfinal?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
