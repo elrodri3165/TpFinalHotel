@@ -20,7 +20,7 @@ public class Empleado {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int Id_Empleado;
+    int IdEmpleado;
     
     @Basic
     String Nombre;
@@ -32,8 +32,8 @@ public class Empleado {
     public Empleado() {
     }
 
-    public Empleado(int Id_Empleado, String Nombre, String Apellido, String Email, String Usuario, String Contraseña) {
-        this.Id_Empleado = Id_Empleado;
+    public Empleado(int IdEmpleado, String Nombre, String Apellido, String Email, String Usuario, String Contraseña) {
+        this.IdEmpleado = IdEmpleado;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
         this.Email = Email;
@@ -41,8 +41,8 @@ public class Empleado {
         this.Contraseña = Contraseña;
     }
 
-    public int getId_Empleado() {
-        return Id_Empleado;
+    public int getIdEmpleado() {
+        return IdEmpleado;
     }
 
     public String getNombre() {
@@ -65,8 +65,8 @@ public class Empleado {
         return Contraseña;
     }
 
-    public void setId_Empleado(int Id_Empleado) {
-        this.Id_Empleado = Id_Empleado;
+    public void setIdEmpleado(int IdEmpleado) {
+        this.IdEmpleado = IdEmpleado;
     }
 
     public void setNombre(String Nombre) {
