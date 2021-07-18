@@ -22,7 +22,7 @@ public class Cliente {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int Id_Cliente;
+    int IdCliente;
     
     @Basic
     String Apellido;
@@ -36,8 +36,8 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int Id_Cliente, String Apellido, String Nombre, String Dni, String Email, List<Reserva> listaReserva) {
-        this.Id_Cliente = Id_Cliente;
+    public Cliente(int IdCliente, String Apellido, String Nombre, String Dni, String Email, List<Reserva> listaReserva) {
+        this.IdCliente = IdCliente;
         this.Apellido = Apellido;
         this.Nombre = Nombre;
         this.Dni = Dni;
@@ -45,8 +45,8 @@ public class Cliente {
         this.listaReserva = listaReserva;
     }
 
-    public int getId_Cliente() {
-        return Id_Cliente;
+    public int getIdCliente() {
+        return IdCliente;
     }
 
     public String getApellido() {
@@ -69,8 +69,8 @@ public class Cliente {
         return listaReserva;
     }
 
-    public void setId_Cliente(int Id_Cliente) {
-        this.Id_Cliente = Id_Cliente;
+    public void setIdCliente(int IdCliente) {
+        this.IdCliente = IdCliente;
     }
 
     public void setApellido(String Apellido) {
