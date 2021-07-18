@@ -92,8 +92,7 @@ public class Cliente {
     public void setListaReserva(List<Reserva> listaReserva) {
         this.listaReserva = listaReserva;
     }
-    
-    
+
     
     
     
