@@ -22,13 +22,13 @@ public class Cliente {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id_Cliente;
+    int Id_Cliente;
     
     @Basic
-    private String Apellido;
-    private String Nombre;
-    private String Dni;
-    private String Email;
+    String Apellido;
+    String Nombre;
+    String Dni;
+    String Email;
     
     @OneToMany
     List <Reserva> listaReserva;

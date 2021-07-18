@@ -20,13 +20,13 @@ public class Habitacion {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int NumeroHabitacion;
+    int NumeroHabitacion;
     
     @Basic
-    private String Piso;
-    private String Nombre;
-    private String Tipo;
-    private int Precio;
+    String Piso;
+    String Nombre;
+    String Tipo;
+    int Precio;
 
     public Habitacion() {
     }

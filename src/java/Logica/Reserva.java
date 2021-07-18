@@ -23,14 +23,14 @@ public class Reserva {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id_Reserva;
+    int Id_Reserva;
     
     @Basic
-    private int Habitacion;
+    int Habitacion;
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date Desde = new Date();
+    Date Desde = new Date();
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date Hasta = new Date();
+    Date Hasta = new Date();
     
     @OneToOne
     Habitacion habi;

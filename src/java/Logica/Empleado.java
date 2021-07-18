@@ -20,14 +20,14 @@ public class Empleado {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id_Empleado;
+    int Id_Empleado;
     
     @Basic
-    private String Nombre;
-    private String Apellido;
-    private String Email;
-    private String Usuario;
-    private String Contraseña;
+    String Nombre;
+    String Apellido;
+    String Email;
+    String Usuario;
+    String Contraseña;
 
     public Empleado() {
     }
