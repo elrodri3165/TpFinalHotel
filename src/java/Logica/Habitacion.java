@@ -20,7 +20,7 @@ public class Habitacion {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int NumeroHabitacion;
+    int idHabitacion;
     
     @Basic
     String Piso;
@@ -31,16 +31,16 @@ public class Habitacion {
     public Habitacion() {
     }
 
-    public Habitacion(int NumeroHabitacion, String Piso, String Nombre, String Tipo, int Precio) {
-        this.NumeroHabitacion = NumeroHabitacion;
+    public Habitacion(int idHabitacion, String Piso, String Nombre, String Tipo, int Precio) {
+        this.idHabitacion = idHabitacion;
         this.Piso = Piso;
         this.Nombre = Nombre;
         this.Tipo = Tipo;
         this.Precio = Precio;
     }
 
-    public int getNumeroHabitacion() {
-        return NumeroHabitacion;
+    public int getIdHabitacion() {
+        return idHabitacion;
     }
 
     public String getPiso() {
@@ -59,8 +59,8 @@ public class Habitacion {
         return Precio;
     }
 
-    public void setNumeroHabitacion(int NumeroHabitacion) {
-        this.NumeroHabitacion = NumeroHabitacion;
+    public void setIdHabitacion(int idHabitacion) {
+        this.idHabitacion = idHabitacion;
     }
 
     public void setPiso(String Piso) {
@@ -78,11 +78,7 @@ public class Habitacion {
     public void setPrecio(int Precio) {
         this.Precio = Precio;
     }
-    
-    
-    
 
-    
     
     
 }

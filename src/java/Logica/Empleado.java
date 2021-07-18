@@ -17,11 +17,11 @@ import javax.persistence.Id;
  */
 @Entity
 public class Empleado {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int IdEmpleado;
-    
+    int idEmpleado;
+
     @Basic
     String Nombre;
     String Apellido;
@@ -32,8 +32,8 @@ public class Empleado {
     public Empleado() {
     }
 
-    public Empleado(int IdEmpleado, String Nombre, String Apellido, String Email, String Usuario, String Contraseña) {
-        this.IdEmpleado = IdEmpleado;
+    public Empleado(int idEmpleado, String Nombre, String Apellido, String Email, String Usuario, String Contraseña) {
+        this.idEmpleado = idEmpleado;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
         this.Email = Email;
@@ -42,7 +42,7 @@ public class Empleado {
     }
 
     public int getIdEmpleado() {
-        return IdEmpleado;
+        return idEmpleado;
     }
 
     public String getNombre() {
@@ -65,8 +65,8 @@ public class Empleado {
         return Contraseña;
     }
 
-    public void setIdEmpleado(int IdEmpleado) {
-        this.IdEmpleado = IdEmpleado;
+    public void setIdEmpleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
     }
 
     public void setNombre(String Nombre) {
@@ -89,5 +89,9 @@ public class Empleado {
         this.Contraseña = Contraseña;
     }
     
- 
+    
+
+   
+    
+
 }

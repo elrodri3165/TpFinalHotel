@@ -23,7 +23,7 @@ public class Reserva {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int IdReserva;
+    int idReserva;
     
     @Basic
     int Habitacion;
@@ -38,14 +38,14 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(int IdReserva, int Habitacion, Habitacion habi) {
-        this.IdReserva = IdReserva;
+    public Reserva(int idReserva, int Habitacion, Habitacion habi) {
+        this.idReserva = idReserva;
         this.Habitacion = Habitacion;
         this.habi = habi;
     }
 
     public int getIdReserva() {
-        return IdReserva;
+        return idReserva;
     }
 
     public int getHabitacion() {
@@ -64,8 +64,8 @@ public class Reserva {
         return habi;
     }
 
-    public void setIdReserva(int IdReserva) {
-        this.IdReserva = IdReserva;
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
     }
 
     public void setHabitacion(int Habitacion) {
@@ -83,5 +83,7 @@ public class Reserva {
     public void setHabi(Habitacion habi) {
         this.habi = habi;
     }
+
+    
     
 }

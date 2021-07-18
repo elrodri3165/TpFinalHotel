@@ -5,6 +5,7 @@
  */
 package Logica;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
@@ -18,11 +19,11 @@ import javax.persistence.OneToMany;
  * @author Rodrigo Gallo
  */
 @Entity
-public class Cliente {
+public class Cliente implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int IdCliente;
+    int idCliente;
     
     @Basic
     String Apellido;
@@ -36,8 +37,8 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int IdCliente, String Apellido, String Nombre, String Dni, String Email, List<Reserva> listaReserva) {
-        this.IdCliente = IdCliente;
+    public Cliente(int idCliente, String Apellido, String Nombre, String Dni, String Email, List<Reserva> listaReserva) {
+        this.idCliente = idCliente;
         this.Apellido = Apellido;
         this.Nombre = Nombre;
         this.Dni = Dni;
@@ -46,7 +47,7 @@ public class Cliente {
     }
 
     public int getIdCliente() {
-        return IdCliente;
+        return idCliente;
     }
 
     public String getApellido() {
@@ -69,8 +70,8 @@ public class Cliente {
         return listaReserva;
     }
 
-    public void setIdCliente(int IdCliente) {
-        this.IdCliente = IdCliente;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public void setApellido(String Apellido) {
@@ -93,7 +94,6 @@ public class Cliente {
         this.listaReserva = listaReserva;
     }
 
-    
     
     
 }
