@@ -5,8 +5,8 @@
  */
 package Servlets;
 
+import Logica.Controladora;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,7 +37,24 @@ public class SvRegister extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String apellido = request.getParameter("apellido");
+        String nombre = request.getParameter("nombre");
+        String user = request.getParameter("user");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        
+        request.getSession().setAttribute("apellido", apellido);
+        request.getSession().setAttribute("nombre", nombre);
+        request.getSession().setAttribute("user", user);
+        request.getSession().setAttribute("password", password);
+        request.getSession().setAttribute("email", email);
+        
+        Controladora control = new Controladora();
+        control.crearEmpleado(nombre, apellido, email, user, password);
+        
+        
+        
     }
 
    

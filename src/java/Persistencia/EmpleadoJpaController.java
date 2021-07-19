@@ -28,6 +28,7 @@ public class EmpleadoJpaController implements Serializable {
     }
     private EntityManagerFactory emf = null;
     
+
     public EmpleadoJpaController() {
         emf = Persistence.createEntityManagerFactory("TpFinalHotelPU");
     }

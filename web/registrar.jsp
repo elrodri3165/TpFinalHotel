@@ -73,7 +73,7 @@
             
               <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-                <input name="email" type="text" class="form-control" id="user" placeholder="Email" aria-label="Email" aria-describedby="addon-wrapping" required>
+                <input name="email" type="email" class="form-control" id="user" placeholder="Email" aria-label="Email" aria-describedby="addon-wrapping" required>
                 <div class="invalid-feedback">
                     Por favor ingrese su correo
                 </div>

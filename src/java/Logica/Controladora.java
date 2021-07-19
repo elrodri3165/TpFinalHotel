@@ -1,14 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Logica;
 
-/**
- *
- * @author Rodrigo Gallo
- */
+import Persistencia.ControladoraPersistencia;
+
 public class Controladora {
     
+   ControladoraPersistencia controlPersis = new ControladoraPersistencia();
+    
+    public void crearEmpleado(String Nombre, String Apellido, String Email, String Usuario, String Contraseña){
+        Empleado empl = new Empleado();
+        empl.setApellido(Apellido);
+        empl.setNombre(Nombre);
+        empl.setEmail(Email);
+        empl.setUsuario(Usuario);
+        empl.setContraseña(Contraseña);
+        
+        controlPersis.crearEmpleado(empl);
+   
+    } 
 }

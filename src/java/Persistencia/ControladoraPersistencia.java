@@ -5,10 +5,18 @@
  */
 package Persistencia;
 
+import Logica.Empleado;
+
 /**
  *
  * @author Rodrigo Gallo
  */
-public class ControladoraPeristencia {
+public class ControladoraPersistencia {
+    
+    EmpleadoJpaController emplJpa = new EmpleadoJpaController();
+    
+    public void crearEmpleado(Empleado empl){
+        emplJpa.create(empl);  
+    }
     
 }

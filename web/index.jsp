@@ -48,8 +48,8 @@
             </div>
             
            <div class="container-boton">
-            <input type="submit" value="Ingresar" class="boton-login">
-            <a class="btn-primary" href="registrar.jsp">Registrarse</a>
+            <input type="submit" value="Ingresar" class="btn btn-primary">
+            <a class="btn btn-primary" href="registrar.jsp">Registrarse</a>
             </div>
             
         </form>
