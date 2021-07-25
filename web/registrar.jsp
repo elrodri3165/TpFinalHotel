@@ -51,7 +51,7 @@
            
             <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-                <input name="user" type="text" class="form-control" id="user" placeholder="Usuario" aria-label="Usuario" aria-describedby="addon-wrapping" required>
+                <input name="dni" type="number" class="form-control" id="dni" placeholder="DNI" aria-label="DNI" aria-describedby="addon-wrapping" required>
                 <div class="invalid-feedback">
                     Por favor ingrese el usuario a utilizar
                 </div>
@@ -62,7 +62,7 @@
 
             <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-key-fill"></i></span>
-                <input id="password" name="password" type="password" class="form-control" id="user" placeholder="Clave" aria-label="Apellido" aria-describedby="addon-wrapping" required>
+                <input id="password" name="password" type="password" class="form-control" id="clave" placeholder="Clave" aria-label="Clave" aria-describedby="addon-wrapping" required>
                 <div class="invalid-feedback">
                     Por favor ingrese la clave a utilizar
                 </div>
@@ -71,16 +71,7 @@
                 </div>
             </div>
             
-              <div class="input-group mb-5 input-group-lg">
-                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-                <input name="email" type="email" class="form-control" id="user" placeholder="Email" aria-label="Email" aria-describedby="addon-wrapping" required>
-                <div class="invalid-feedback">
-                    Por favor ingrese su correo
-                </div>
-                <div class="valid-feedback">
-                    Correcto!
-                </div>
-            </div>
+            
             
            <div class="container-boton">
             <input type="submit" value="Ingresar" class="boton-login">

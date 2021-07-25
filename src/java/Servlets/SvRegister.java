@@ -5,7 +5,7 @@
  */
 package Servlets;
 
-import Logica.Controladora;
+import Logica.ControladoraLogica;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,23 +40,26 @@ public class SvRegister extends HttpServlet {
         
         String apellido = request.getParameter("apellido");
         String nombre = request.getParameter("nombre");
-        String user = request.getParameter("user");
         String password = request.getParameter("password");
-        String email = request.getParameter("email");
+        int dni = Integer.parseInt(request.getParameter("dni"));
         
         request.getSession().setAttribute("apellido", apellido);
         request.getSession().setAttribute("nombre", nombre);
-        request.getSession().setAttribute("user", user);
+        request.getSession().setAttribute("dni", dni);
         request.getSession().setAttribute("password", password);
-        request.getSession().setAttribute("email", email);
         
-        Controladora control = new Controladora();
-        control.crearEmpleado(nombre, apellido, email, user, password);
+        ControladoraLogica control = new ControladoraLogica();
+        control.crearEmpleado(nombre, apellido, dni, password);
+        
+        String objeto = control.toString();
+        request.getSession().setAttribute("control", objeto);
+        
+        response.sendRedirect("pagina.jsp");
         
         
+       
         
     }
-
    
     @Override
     public String getServletInfo() {

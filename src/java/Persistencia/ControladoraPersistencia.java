@@ -1,22 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Persistencia;
 
 import Logica.Empleado;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author Rodrigo Gallo
- */
+
 public class ControladoraPersistencia {
     
-    EmpleadoJpaController emplJpa = new EmpleadoJpaController();
-    
-    public void crearEmpleado(Empleado empl){
-        emplJpa.create(empl);  
+    public void CrearEmpleado(Empleado empl){
+        
+        EmpleadoJpaController1 emplJpa = new EmpleadoJpaController1();
+        
+        try {
+            emplJpa.create(empl);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
 }

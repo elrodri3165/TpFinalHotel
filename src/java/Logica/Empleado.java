@@ -6,10 +6,8 @@
 package Logica;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.Basic;
 import javax.persistence.Id;
 
 /**
@@ -20,30 +18,26 @@ import javax.persistence.Id;
 public class Empleado implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long idEmpleado;
+    int dni;
 
     @Basic
     String Nombre;
     String Apellido;
-    String Email;
-    String Usuario;
-    String Contraseña;
+    String Clave;
 
     public Empleado() {
     }
 
-    public Empleado(Long idEmpleado, String Nombre, String Apellido, String Email, String Usuario, String Contraseña) {
-        this.idEmpleado = idEmpleado;
+    public Empleado(int dni, String Nombre, String Apellido, String Clave) {
+        this.dni = dni;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
-        this.Email = Email;
-        this.Usuario = Usuario;
-        this.Contraseña = Contraseña;
+        this.Clave = Clave;
+       
     }
 
-    public Long getIdEmpleado() {
-        return idEmpleado;
+    public int getDni() {
+        return dni;
     }
 
     public String getNombre() {
@@ -54,20 +48,12 @@ public class Empleado implements Serializable {
         return Apellido;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getClave() {
+        return Clave;
     }
 
-    public String getUsuario() {
-        return Usuario;
-    }
-
-    public String getContraseña() {
-        return Contraseña;
-    }
-
-    public void setIdEmpleado(Long idEmpleado) {
-        this.idEmpleado = idEmpleado;
+    public void setDni(int dni) {
+        this.dni = dni;
     }
 
     public void setNombre(String Nombre) {
@@ -78,21 +64,8 @@ public class Empleado implements Serializable {
         this.Apellido = Apellido;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setClave(String Clave) {
+        this.Clave = Clave;
     }
-
-    public void setUsuario(String Usuario) {
-        this.Usuario = Usuario;
-    }
-
-    public void setContraseña(String Contraseña) {
-        this.Contraseña = Contraseña;
-    }
-    
-    
-
    
-    
-
 }
