@@ -35,14 +35,18 @@ public class Reserva implements Serializable {
     
     @OneToOne
     Habitacion habi;
+    
+    @OneToOne
+    Empleado empl;
 
     public Reserva() {
     }
 
-    public Reserva(Long idReserva, int Habitacion, Habitacion habi) {
+    public Reserva(Long idReserva, int Habitacion, Habitacion habi, Empleado empl) {
         this.idReserva = idReserva;
         this.Habitacion = Habitacion;
         this.habi = habi;
+        this.empl = empl;
     }
 
     public Long getIdReserva() {
@@ -65,6 +69,10 @@ public class Reserva implements Serializable {
         return habi;
     }
 
+    public Empleado getEmpl() {
+        return empl;
+    }
+
     public void setIdReserva(Long idReserva) {
         this.idReserva = idReserva;
     }
@@ -85,6 +93,10 @@ public class Reserva implements Serializable {
         this.habi = habi;
     }
 
-    
+    public void setEmpl(Empleado empl) {
+        this.empl = empl;
+    }
+
+      
     
 }

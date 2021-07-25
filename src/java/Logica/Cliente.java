@@ -9,8 +9,6 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -22,13 +20,11 @@ import javax.persistence.OneToMany;
 public class Cliente implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long idCliente;
+    int Dni;
     
     @Basic
     String Apellido;
     String Nombre;
-    String Dni;
     String Email;
     
     @OneToMany
@@ -37,41 +33,16 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(Long idCliente, String Apellido, String Nombre, String Dni, String Email, List<Reserva> listaReserva) {
-        this.idCliente = idCliente;
+    public Cliente(int Dni, String Apellido, String Nombre, String Email, List<Reserva> listaReserva) {
+        this.Dni = Dni;
         this.Apellido = Apellido;
         this.Nombre = Nombre;
-        this.Dni = Dni;
         this.Email = Email;
         this.listaReserva = listaReserva;
     }
 
-    public Long getIdCliente() {
-        return idCliente;
-    }
-
-    public String getApellido() {
-        return Apellido;
-    }
-
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public String getDni() {
-        return Dni;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public List<Reserva> getListaReserva() {
-        return listaReserva;
-    }
-
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
+    public void setDni(int Dni) {
+        this.Dni = Dni;
     }
 
     public void setApellido(String Apellido) {
@@ -82,10 +53,6 @@ public class Cliente implements Serializable {
         this.Nombre = Nombre;
     }
 
-    public void setDni(String Dni) {
-        this.Dni = Dni;
-    }
-
     public void setEmail(String Email) {
         this.Email = Email;
     }
@@ -94,6 +61,24 @@ public class Cliente implements Serializable {
         this.listaReserva = listaReserva;
     }
 
-    
-    
+    public int getDni() {
+        return Dni;
+    }
+
+    public String getApellido() {
+        return Apellido;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public List<Reserva> getListaReserva() {
+        return listaReserva;
+    }
+
 }

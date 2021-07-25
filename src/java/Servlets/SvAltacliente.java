@@ -2,6 +2,7 @@ package Servlets;
 
 import Logica.ControladoraLogica;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Rodrigo Gallo
  */
-@WebServlet(name = "SvRegister", urlPatterns = {"/SvRegister"})
-public class SvRegister extends HttpServlet {
+@WebServlet(name = "SvAltacliente", urlPatterns = {"/SvAltacliente"})
+public class SvAltacliente extends HttpServlet {
 
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -22,6 +23,7 @@ public class SvRegister extends HttpServlet {
         
     }
 
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,21 +37,24 @@ public class SvRegister extends HttpServlet {
         
         String apellido = request.getParameter("apellido");
         String nombre = request.getParameter("nombre");
-        String password = request.getParameter("password");
+        String email = request.getParameter("email");
         int dni = Integer.parseInt(request.getParameter("dni"));
         
         request.getSession().setAttribute("apellido", apellido);
         request.getSession().setAttribute("nombre", nombre);
         request.getSession().setAttribute("dni", dni);
-        request.getSession().setAttribute("password", password);
+        request.getSession().setAttribute("email", email);
         
         ControladoraLogica control = new ControladoraLogica();
         control.crearEmpleado(nombre, apellido, dni, password);
         
-        response.sendRedirect("index.jsp");
-          
+        response.sendRedirect("ambclientes.jsp");
+        
+        
+        
     }
-   
+
+    
     @Override
     public String getServletInfo() {
         return "Short description";

@@ -2,6 +2,7 @@ package Servlets;
 
 import Logica.ControladoraLogica;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,16 +13,17 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Rodrigo Gallo
  */
-@WebServlet(name = "SvRegister", urlPatterns = {"/SvRegister"})
-public class SvRegister extends HttpServlet {
+@WebServlet(name = "SvAltahabitacion", urlPatterns = {"/SvAltahabitacion"})
+public class SvAltahabitacion extends HttpServlet {
 
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
     }
 
+   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,23 +35,25 @@ public class SvRegister extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String apellido = request.getParameter("apellido");
-        String nombre = request.getParameter("nombre");
-        String password = request.getParameter("password");
-        int dni = Integer.parseInt(request.getParameter("dni"));
+        String nombre = request.getParameter("hab-nombre");
+        int precio = Integer.parseInt(request.getParameter("precio"));
+        String piso = request.getParameter("piso");
+        String tipo = request.getParameter("tipo");
         
-        request.getSession().setAttribute("apellido", apellido);
-        request.getSession().setAttribute("nombre", nombre);
-        request.getSession().setAttribute("dni", dni);
-        request.getSession().setAttribute("password", password);
+        
+        request.getSession().setAttribute("hab-nombre", nombre);
+        request.getSession().setAttribute("precio", precio);
+        request.getSession().setAttribute("piso", piso);
+        request.getSession().setAttribute("tipo", tipo);
         
         ControladoraLogica control = new ControladoraLogica();
-        control.crearEmpleado(nombre, apellido, dni, password);
+        control.crearHabitacion(nombre, piso, precio, tipo);
         
-        response.sendRedirect("index.jsp");
-          
+        response.sendRedirect("abmhabitaciones.jsp");
+       
     }
-   
+
+    
     @Override
     public String getServletInfo() {
         return "Short description";

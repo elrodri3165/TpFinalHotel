@@ -1,6 +1,8 @@
 package Persistencia;
 
+import Logica.Cliente;
 import Logica.Empleado;
+import Logica.Habitacion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,6 +18,22 @@ public class ControladoraPersistencia {
         } catch (Exception ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    }
+    
+    public void CrearHabitacion(Habitacion habi){
+        
+        HabitacionJpaController habiJpa = new HabitacionJpaController();
+       
+        try {
+            habiJpa.create(habi);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+    
+    public void CearCliente(Cliente clie){
         
     }
     
