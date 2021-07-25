@@ -46,12 +46,10 @@ public class SvAltacliente extends HttpServlet {
         request.getSession().setAttribute("email", email);
         
         ControladoraLogica control = new ControladoraLogica();
-        control.crearEmpleado(nombre, apellido, dni, password);
+        control.crearCliente(apellido, nombre, dni, email);
         
-        response.sendRedirect("ambclientes.jsp");
-        
-        
-        
+        response.sendRedirect("abmclientes.jsp");
+               
     }
 
     

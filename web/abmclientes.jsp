@@ -39,7 +39,7 @@
             
             <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-                <input name="hab-nombre" type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="addon-wrapping" required>
+                <input name="nombre" type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="addon-wrapping" required>
                 <div class="invalid-feedback">
                     Por favor ingrese el nombre
                 </div>

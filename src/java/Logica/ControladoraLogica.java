@@ -36,9 +36,9 @@ public class ControladoraLogica {
         clie.setApellido(apellido);
         clie.setNombre(nombre);
         clie.setEmail(Email);
+        clie.setDni(dni);
         
-      
-        
+      controlJpa.CearCliente(clie);
         
     }
    

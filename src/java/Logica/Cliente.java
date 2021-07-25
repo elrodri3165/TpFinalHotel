@@ -20,7 +20,7 @@ import javax.persistence.OneToMany;
 public class Cliente implements Serializable {
     
     @Id
-    int Dni;
+    int dni;
     
     @Basic
     String Apellido;
@@ -34,7 +34,7 @@ public class Cliente implements Serializable {
     }
 
     public Cliente(int Dni, String Apellido, String Nombre, String Email, List<Reserva> listaReserva) {
-        this.Dni = Dni;
+        this.dni = Dni;
         this.Apellido = Apellido;
         this.Nombre = Nombre;
         this.Email = Email;
@@ -42,7 +42,7 @@ public class Cliente implements Serializable {
     }
 
     public void setDni(int Dni) {
-        this.Dni = Dni;
+        this.dni = Dni;
     }
 
     public void setApellido(String Apellido) {
@@ -62,7 +62,7 @@ public class Cliente implements Serializable {
     }
 
     public int getDni() {
-        return Dni;
+        return dni;
     }
 
     public String getApellido() {

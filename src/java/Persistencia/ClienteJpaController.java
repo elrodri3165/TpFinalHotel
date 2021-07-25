@@ -5,8 +5,9 @@
  */
 package Persistencia;
 
-import Logica.Habitacion;
+import Logica.Cliente;
 import Persistencia.exceptions.NonexistentEntityException;
+import Persistencia.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -21,14 +22,15 @@ import javax.persistence.criteria.Root;
  *
  * @author Rodrigo Gallo
  */
-public class HabitacionJpaController implements Serializable {
+public class ClienteJpaController implements Serializable {
 
-    public HabitacionJpaController(EntityManagerFactory emf) {
+    public ClienteJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
     
-    public HabitacionJpaController() {
+    
+    public ClienteJpaController() {
         emf = Persistence.createEntityManagerFactory("TpFinalHotelPU");
     }
 
@@ -36,13 +38,18 @@ public class HabitacionJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Habitacion habitacion) {
+    public void create(Cliente cliente) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(habitacion);
+            em.persist(cliente);
             em.getTransaction().commit();
+        } catch (Exception ex) {
+            if (findCliente(cliente.getDni()) != null) {
+                throw new PreexistingEntityException("Cliente " + cliente + " already exists.", ex);
+            }
+            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -50,19 +57,19 @@ public class HabitacionJpaController implements Serializable {
         }
     }
 
-    public void edit(Habitacion habitacion) throws NonexistentEntityException, Exception {
+    public void edit(Cliente cliente) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            habitacion = em.merge(habitacion);
+            cliente = em.merge(cliente);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = habitacion.getIdHabitacion();
-                if (findHabitacion(id) == null) {
-                    throw new NonexistentEntityException("The habitacion with id " + id + " no longer exists.");
+                int id = cliente.getDni();
+                if (findCliente(id) == null) {
+                    throw new NonexistentEntityException("The cliente with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,19 +80,19 @@ public class HabitacionJpaController implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destroy(int id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Habitacion habitacion;
+            Cliente cliente;
             try {
-                habitacion = em.getReference(Habitacion.class, id);
-                habitacion.getIdHabitacion();
+                cliente = em.getReference(Cliente.class, id);
+                cliente.getDni();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The habitacion with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The cliente with id " + id + " no longer exists.", enfe);
             }
-            em.remove(habitacion);
+            em.remove(cliente);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -94,19 +101,19 @@ public class HabitacionJpaController implements Serializable {
         }
     }
 
-    public List<Habitacion> findHabitacionEntities() {
-        return findHabitacionEntities(true, -1, -1);
+    public List<Cliente> findClienteEntities() {
+        return findClienteEntities(true, -1, -1);
     }
 
-    public List<Habitacion> findHabitacionEntities(int maxResults, int firstResult) {
-        return findHabitacionEntities(false, maxResults, firstResult);
+    public List<Cliente> findClienteEntities(int maxResults, int firstResult) {
+        return findClienteEntities(false, maxResults, firstResult);
     }
 
-    private List<Habitacion> findHabitacionEntities(boolean all, int maxResults, int firstResult) {
+    private List<Cliente> findClienteEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Habitacion.class));
+            cq.select(cq.from(Cliente.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -118,20 +125,20 @@ public class HabitacionJpaController implements Serializable {
         }
     }
 
-    public Habitacion findHabitacion(Long id) {
+    public Cliente findCliente(int id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Habitacion.class, id);
+            return em.find(Cliente.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getHabitacionCount() {
+    public int getClienteCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Habitacion> rt = cq.from(Habitacion.class);
+            Root<Cliente> rt = cq.from(Cliente.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

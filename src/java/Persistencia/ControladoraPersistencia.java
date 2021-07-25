@@ -35,6 +35,14 @@ public class ControladoraPersistencia {
     
     public void CearCliente(Cliente clie){
         
+        ClienteJpaController clieJpa = new ClienteJpaController();
+        
+        try {
+            clieJpa.create(clie);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
 }
