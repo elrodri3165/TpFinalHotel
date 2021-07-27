@@ -1,6 +1,7 @@
 package Logica;
 
 import Persistencia.ControladoraPersistencia;
+import java.util.List;
 
 
 public class ControladoraLogica {
@@ -40,6 +41,18 @@ public class ControladoraLogica {
         
       controlJpa.CearCliente(clie);
         
+    }
+    
+    public List <Cliente> traerClientes(){
+        return controlJpa.traerClientes();
+    }
+    
+    public List <Habitacion> traerHabitaciones(){
+        return controlJpa.traerHabitaciones();
+    }
+    
+    public List <Reserva> traerReservas(){
+        return controlJpa.traerReservas();
     }
    
 }

@@ -4,6 +4,9 @@
     Author     : Rodrigo Gallo
 --%>
 
+<%@page import="Logica.Habitacion"%>
+<%@page import="Logica.ControladoraLogica"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,6 +19,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Hotel Gallito - Login</title>
     </head>
@@ -24,6 +29,7 @@
             <h1>Hotel Gallito</h1>
             <h1>Altas, bajas y modificiones de habitaciones del hotel</h1>
             <img src="img/logo.png" alt="alt"/>
+            <div class="container">
         <form class="row g-3 needs-validation" novalidate action="SvAltahabitacion" method="post">
             
               <div class="input-group mb-5 input-group-lg">
@@ -88,14 +94,64 @@
             </div>
         </div>
             
-           <div class="container-boton">
+           <div class="d-grid gap-2 d-md-block">
             <input type="submit" value="Ingresar" class="btn btn-primary">
-            
-            <a class="btn btn-primary" href="index.jsp">Volver</a>
+            <a class="btn btn-primary" role="button" href="index.jsp">Volver</a>
             </div>
             
         </form>
+            </div>
       
+            
+            <h2>Listado de habitaciones del hotel</h2>
+            
+           <div class="table-responsive">
+            <table class="table table-primary table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nº Habitacion</th>
+                        <th scope="col">Nombre de la habitacion</th>
+                        <th scope="col">Piso</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Precio</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% ControladoraLogica control=new ControladoraLogica(); 
+                    List <Habitacion> ListaHabitaciones = control.traerHabitaciones();
+                        for (Habitacion habie: ListaHabitaciones){ %>
+                        <tr>
+                            <% String nombre=habie.getNombre(); 
+                               String piso=habie.getPiso();
+                               String tipo=habie.getTipo(); 
+                               int precio=habie.getPrecio();
+                               Long id=habie.getIdHabitacion();
+                                
+                            %>
+                        </tr>
+                        <td>
+                            <%=id %>
+                        </td>
+                        <td>
+                            <%=nombre %>
+                        </td>
+
+                        <td>
+                            <%=piso %>
+                        </td>
+
+                        <td>
+                            <%=tipo %>
+                        </td>
+                        <td>
+                            <%=precio %>
+                        </td>
+                        <% } %>
+
+                </tbody>
+            </table>
+        </div>
     </div>
     <script src="js/form-control.js" type="text/javascript"></script>
     </body>
