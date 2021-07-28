@@ -16,6 +16,10 @@ public class ControladoraPersistencia {
     HabitacionJpaController habiJpa = new HabitacionJpaController();
     ReservaJpaController reserJpa = new ReservaJpaController();
     
+    public List<Empleado> traerEmpleados(){
+        return emplJpa.findEmpleadoEntities();
+    }
+    
     
     public void CrearEmpleado(Empleado empl){
        

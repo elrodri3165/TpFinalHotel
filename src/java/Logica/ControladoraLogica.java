@@ -8,6 +8,20 @@ public class ControladoraLogica {
     
     ControladoraPersistencia controlJpa = new ControladoraPersistencia();
     
+    public boolean verificarUsuario(int dni, String password){
+        List<Empleado>listaEmpleados =controlJpa.traerEmpleados();
+        
+        if (listaEmpleados != null){
+            for (Empleado empl : listaEmpleados){
+                if (empl.getClave().equals(password) && empl.getDni()==dni){
+                    return true;
+                } 
+            }
+            
+        }
+        return false;
+    }
+    
  
     public void crearEmpleado(String nombre, String apellido, int dni, String clave){
        
@@ -53,6 +67,10 @@ public class ControladoraLogica {
     
     public List <Reserva> traerReservas(){
         return controlJpa.traerReservas();
+    }
+    
+    public List <Empleado> traerEmpleados(){
+        return controlJpa.traerEmpleados();
     }
    
 }

@@ -22,6 +22,14 @@
         <title>Hotel Gallito - Login</title>
     </head>
     <body>
+        <% 
+HttpSession misession = request.getSession();
+String user = (String)misession.getAttribute("dni");
+if (user == null){
+    response.sendRedirect("index.jsp");
+}
+else{
+        %>
         <div class="container">
             <h1>Hotel Gallito</h1>
             <h1>Menu Principal</h1>
@@ -43,5 +51,6 @@
     </div>
     <script src="js/form-control.js" type="text/javascript"></script>
     <script src="js/validacion.js"></script>
+    <% } %>
     </body>
 </html>

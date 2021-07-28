@@ -25,6 +25,14 @@
 </head>
 
 <body>
+<% 
+HttpSession misession = request.getSession();
+String user = (String)misession.getAttribute("dni");
+if (user == null){
+    response.sendRedirect("index.jsp");
+}
+else{
+        %>
     <div class="container">
         <h1>Hotel Gallito</h1>
         <h1>Altas, bajas y modificiones de clientes del hotel</h1>
@@ -78,7 +86,7 @@
 
                 <div class="d-grid gap-2 d-md-block">
                     <input type="submit" value="Ingresar" class="btn btn-primary">
-                    <a class="btn btn-primary" role="button" href="index.jsp">Volver</a>
+                    <a class="btn btn-primary" role="button" href="menu.jsp">Volver</a>
                 </div>
 
             </form>
@@ -123,5 +131,6 @@
         </div>
     </div>
     <script src="js/form-control.js" type="text/javascript"></script>
+<% } %>
 </body>
 </html>

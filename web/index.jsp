@@ -25,11 +25,11 @@
         <div class="container">
             <h1>Hotel Gallito</h1>
             <img src="img/logo.png" alt="alt"/>
-        <form class="row g-3 needs-validation" novalidate action="" method="post" onsubmit="return validarlogin()">
+        <form class="row g-3 needs-validation" novalidate action="SvLogin" method="post" onsubmit="return validarlogin()">
            
             <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-                <input name="user" type="text" class="form-control" id="user" placeholder="Usuario" aria-label="Usuario" aria-describedby="addon-wrapping" required>
+                <input name="dni" type="number" class="form-control" id="user" placeholder="Usuario" aria-label="Usuario" aria-describedby="addon-wrapping" required>
                 <div class="invalid-feedback">
                     Por favor ingrese el usuario registrado
                 </div>
@@ -40,7 +40,7 @@
 
             <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-key-fill"></i></span>
-                <input id="password" name="password" type="password" class="form-control" id="user" placeholder="Clave" aria-label="Clave" aria-describedby="addon-wrapping" required>
+                <input id="password" name="clave" type="password" class="form-control" id="user" placeholder="Clave" aria-label="Clave" aria-describedby="addon-wrapping" required>
                 <div class="invalid-feedback">
                     Por favor ingrese la clave
                 </div>
