@@ -43,7 +43,7 @@ else{
                     
                     <a class="btn btn-outline-primary me-2" type="button" href="abmreservas.jsp">ABM Reservas</a>
                     
-                    <a class="btn btn-sm btn-outline-secondary" type="button" href="">Logout</a>
+                    <a class="btn btn-sm btn-outline-secondary" type="button" href="index.jsp">Logout</a>
                                    
                 </form>
             </nav>

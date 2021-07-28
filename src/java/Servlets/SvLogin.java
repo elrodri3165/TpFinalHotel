@@ -42,12 +42,17 @@ public class SvLogin extends HttpServlet {
         ControladoraLogica control = new ControladoraLogica();
         boolean autorizado = control.verificarUsuario(dni, clave);
         
-        if (autorizado ==true){
+        if (autorizado == true){
             HttpSession misession = request.getSession(true);
             String dni2 = String.valueOf(dni);  
             misession.setAttribute("dni", dni2);
             
             response.sendRedirect("menu.jsp");
+        }
+        else{
+           HttpSession mal = request.getSession(true);
+           mal.setAttribute("error", "ok");
+           response.sendRedirect("index.jsp");
         }
        
     }

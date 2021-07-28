@@ -22,6 +22,22 @@
         <title>Hotel Gallito - Login</title>
     </head>
     <body>
+        <div class="modal" id="myModal" tabindex="-1">
+         <div class="modal-dialog">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title">Advertencia!!</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body">
+               <p>Ingrese un usuario y/o contraseña correcta</p>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             </div>
+           </div>
+         </div>
+       </div>
         <div class="container">
             <h1>Hotel Gallito</h1>
             <img src="img/logo.png" alt="alt"/>
@@ -29,9 +45,9 @@
            
             <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-                <input name="dni" type="number" class="form-control" id="user" placeholder="Usuario" aria-label="Usuario" aria-describedby="addon-wrapping" required>
+                <input name="dni" type="number" class="form-control" id="user" placeholder="DNI" aria-label="DNI" aria-describedby="addon-wrapping" required>
                 <div class="invalid-feedback">
-                    Por favor ingrese el usuario registrado
+                    Por favor ingrese el dni de un usuario registrado
                 </div>
                 <div class="valid-feedback">
                     Correcto!
@@ -59,5 +75,16 @@
     </div>
     <script src="js/form-control.js" type="text/javascript"></script>
     <script src="js/validacion.js"></script>
+<% 
+HttpSession mal = request.getSession();
+String error = (String)mal.getAttribute("error");
+if (error == "ok"){ %>
+<script>
+var myModal = new bootstrap.Modal(document.getElementById('myModal'))
+myModal.show()
+</script>
+<% 
+mal.setAttribute("error", "null");
+        } %>
     </body>
 </html>
