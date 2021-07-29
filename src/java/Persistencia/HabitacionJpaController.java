@@ -28,7 +28,7 @@ public class HabitacionJpaController implements Serializable {
     }
     private EntityManagerFactory emf = null;
     
-    public HabitacionJpaController() {
+     public HabitacionJpaController() {
         emf = Persistence.createEntityManagerFactory("TpFinalHotelPU");
     }
 
@@ -60,7 +60,7 @@ public class HabitacionJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = habitacion.getIdHabitacion();
+                int id = habitacion.getIdHabitacion();
                 if (findHabitacion(id) == null) {
                     throw new NonexistentEntityException("The habitacion with id " + id + " no longer exists.");
                 }
@@ -73,7 +73,7 @@ public class HabitacionJpaController implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destroy(int id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -118,7 +118,7 @@ public class HabitacionJpaController implements Serializable {
         }
     }
 
-    public Habitacion findHabitacion(Long id) {
+    public Habitacion findHabitacion(int id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Habitacion.class, id);

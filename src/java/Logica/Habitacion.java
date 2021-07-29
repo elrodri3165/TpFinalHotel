@@ -21,7 +21,7 @@ public class Habitacion implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long idHabitacion;
+    int idHabitacion;
     
     @Basic
     String Piso;
@@ -32,7 +32,7 @@ public class Habitacion implements Serializable {
     public Habitacion() {
     }
 
-    public Habitacion(Long idHabitacion, String Piso, String Nombre, String Tipo, int Precio) {
+    public Habitacion(int idHabitacion, String Piso, String Nombre, String Tipo, int Precio) {
         this.idHabitacion = idHabitacion;
         this.Piso = Piso;
         this.Nombre = Nombre;
@@ -40,7 +40,7 @@ public class Habitacion implements Serializable {
         this.Precio = Precio;
     }
 
-    public Long getIdHabitacion() {
+    public int getIdHabitacion() {
         return idHabitacion;
     }
 
@@ -60,7 +60,7 @@ public class Habitacion implements Serializable {
         return Precio;
     }
 
-    public void setIdHabitacion(Long idHabitacion) {
+    public void setIdHabitacion(int idHabitacion) {
         this.idHabitacion = idHabitacion;
     }
 
@@ -79,7 +79,4 @@ public class Habitacion implements Serializable {
     public void setPrecio(int Precio) {
         this.Precio = Precio;
     }
-
-    
-    
 }

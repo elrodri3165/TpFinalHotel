@@ -1,6 +1,8 @@
 package Logica;
 
 import Persistencia.ControladoraPersistencia;
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.util.Date;
 import java.util.List;
 
 
@@ -52,12 +54,22 @@ public class ControladoraLogica {
         clie.setNombre(nombre);
         clie.setEmail(Email);
         clie.setDni(dni);
-        
-      controlJpa.CearCliente(clie);
+       
+        controlJpa.CearCliente(clie);
         
     }
     
-    public void crearReserva(){
+    public void crearReserva(Date desde, Date hasta, Habitacion habi, Empleado empl, Cliente clie ){
+        
+        Reserva reser = new Reserva();
+       
+        reser.setDesde(desde);
+        reser.setHasta(hasta);
+        reser.setHabi(habi);
+        reser.setEmpl(empl);
+        reser.setClie(clie);
+        
+        controlJpa.CrearReserva(reser);
         
     }
     
@@ -75,6 +87,18 @@ public class ControladoraLogica {
     
     public List <Empleado> traerEmpleados(){
         return controlJpa.traerEmpleados();
+    }
+    
+    public Empleado traerunEmpleado(int dni){
+        return controlJpa.taerunEmpleado(dni);
+    }
+    
+    public Habitacion traerHabitacion (int numero){
+        return controlJpa.traerunaHabitacion(numero);
+    }
+    
+    public Cliente traerCliente (int dni){
+        return controlJpa.traerunCliente(dni);
     }
    
 }

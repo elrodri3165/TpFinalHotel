@@ -24,10 +24,9 @@ public class Reserva implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long idReserva;
+    int idReserva;
     
     @Basic
-    int Habitacion;
     @Temporal(javax.persistence.TemporalType.DATE)
     Date Desde = new Date();
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -45,21 +44,16 @@ public class Reserva implements Serializable {
     public Reserva() {
     }
 
-    public Reserva(Long idReserva, int Habitacion, Habitacion habi, Empleado empl, Cliente clie) {
+    public Reserva(int idReserva,  Habitacion habi, Empleado empl, Cliente clie) {
         this.idReserva = idReserva;
-        this.Habitacion = Habitacion;
         this.habi = habi;
         this.empl = empl;
         this.clie = clie;
     }
     
     
-    public Long getIdReserva() {
+    public int getIdReserva() {
         return idReserva;
-    }
-
-    public int getHabitacion() {
-        return Habitacion;
     }
 
     public Date getDesde() {
@@ -82,12 +76,8 @@ public class Reserva implements Serializable {
         return clie;
     }
    
-    public void setIdReserva(Long idReserva) {
+    public void setIdReserva(int idReserva) {
         this.idReserva = idReserva;
-    }
-
-    public void setHabitacion(int Habitacion) {
-        this.Habitacion = Habitacion;
     }
 
     public void setDesde(Date Desde) {

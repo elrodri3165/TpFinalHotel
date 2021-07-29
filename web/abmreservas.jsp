@@ -41,7 +41,7 @@ else{
             <h1>Altas, bajas y modificiones de las reservas del hotel</h1>
             <img src="img/logo.png" alt="alt"/>
             <div class="container">
-        <form class="row g-3 needs-validation" novalidate action="SvAltahabitacion" method="post">
+        <form class="row g-3 needs-validation" novalidate action="SVAltareserva" method="post">
             
               <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
@@ -79,7 +79,7 @@ else{
                                String piso=habie.getPiso();
                                String tipo=habie.getTipo(); 
                                int precio=habie.getPrecio();
-                               Long id=habie.getIdHabitacion(); 
+                               int id=habie.getIdHabitacion(); 
                             %>
                             <option value="<%=id %>">
                                 <%=nombre %>, Piso: <%=piso %>, Tipo:  <%=tipo %>, Precio: <%=precio %>
@@ -150,8 +150,8 @@ else{
                         <tr>
                             <% Date desde=reser.getDesde();
                                Date hasta=reser.getHasta();
-                               Long id=reser.getIdReserva();
-                               Habitacion habi=reser.getHabi(); 
+                               int id=reser.getIdReserva();
+                               Habitacion habi=reser.getHabi();
                                String nombre=habi.getNombre();
                                Cliente clie=reser.getClie();
                                String apellidocliente = clie.getApellido();

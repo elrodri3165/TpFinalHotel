@@ -5,17 +5,18 @@
  */
 package Persistencia;
 
+import java.io.Serializable;
+import javax.persistence.Query;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import Logica.Cliente;
 import Logica.Reserva;
 import Persistencia.exceptions.NonexistentEntityException;
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 /**
  *
@@ -27,7 +28,6 @@ public class ReservaJpaController implements Serializable {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
-    
     
     public ReservaJpaController() {
         emf = Persistence.createEntityManagerFactory("TpFinalHotelPU");
@@ -42,7 +42,16 @@ public class ReservaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Cliente clie = reserva.getClie();
+            if (clie != null) {
+                clie = em.getReference(clie.getClass(), clie.getDni());
+                reserva.setClie(clie);
+            }
             em.persist(reserva);
+            if (clie != null) {
+                clie.getListaReserva().add(reserva);
+                clie = em.merge(clie);
+            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -56,12 +65,27 @@ public class ReservaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Reserva persistentReserva = em.find(Reserva.class, reserva.getIdReserva());
+            Cliente clieOld = persistentReserva.getClie();
+            Cliente clieNew = reserva.getClie();
+            if (clieNew != null) {
+                clieNew = em.getReference(clieNew.getClass(), clieNew.getDni());
+                reserva.setClie(clieNew);
+            }
             reserva = em.merge(reserva);
+            if (clieOld != null && !clieOld.equals(clieNew)) {
+                clieOld.getListaReserva().remove(reserva);
+                clieOld = em.merge(clieOld);
+            }
+            if (clieNew != null && !clieNew.equals(clieOld)) {
+                clieNew.getListaReserva().add(reserva);
+                clieNew = em.merge(clieNew);
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = reserva.getIdReserva();
+                int id = reserva.getIdReserva();
                 if (findReserva(id) == null) {
                     throw new NonexistentEntityException("The reserva with id " + id + " no longer exists.");
                 }
@@ -74,7 +98,7 @@ public class ReservaJpaController implements Serializable {
         }
     }
 
-    public void destroy(Long id) throws NonexistentEntityException {
+    public void destroy(int id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -85,6 +109,11 @@ public class ReservaJpaController implements Serializable {
                 reserva.getIdReserva();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The reserva with id " + id + " no longer exists.", enfe);
+            }
+            Cliente clie = reserva.getClie();
+            if (clie != null) {
+                clie.getListaReserva().remove(reserva);
+                clie = em.merge(clie);
             }
             em.remove(reserva);
             em.getTransaction().commit();
@@ -119,7 +148,7 @@ public class ReservaJpaController implements Serializable {
         }
     }
 
-    public Reserva findReserva(Long id) {
+    public Reserva findReserva(int id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Reserva.class, id);

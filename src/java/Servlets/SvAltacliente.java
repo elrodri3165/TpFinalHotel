@@ -42,7 +42,7 @@ public class SvAltacliente extends HttpServlet {
         
         request.getSession().setAttribute("apellido", apellido);
         request.getSession().setAttribute("nombre", nombre);
-        request.getSession().setAttribute("dni", dni);
+        request.getSession().setAttribute("dnicliente", dni);
         request.getSession().setAttribute("email", email);
         
         ControladoraLogica control = new ControladoraLogica();

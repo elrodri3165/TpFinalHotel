@@ -71,4 +71,16 @@ public class ControladoraPersistencia {
         return emplJpa.findEmpleadoEntities();
     }
     
+    public Empleado taerunEmpleado(int dni){
+        return emplJpa.findEmpleado(dni);
+    }
+    
+    public Habitacion traerunaHabitacion (int numero){
+        return habiJpa.findHabitacion(numero);
+    }
+    
+    public Cliente traerunCliente (int dni){
+        return clieJpa.findCliente(dni);
+    }
+    
 }

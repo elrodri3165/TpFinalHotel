@@ -134,7 +134,7 @@ else{
                                String piso=habie.getPiso();
                                String tipo=habie.getTipo(); 
                                int precio=habie.getPrecio();
-                               Long id=habie.getIdHabitacion();
+                               int id=habie.getIdHabitacion();
                                 
                             %>
                         </tr>
