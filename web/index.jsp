@@ -41,6 +41,7 @@
         <div class="container">
             <h1>Hotel Gallito</h1>
             <img src="img/logo.png" alt="alt"/>
+        <h3>Utilize el formulario para ingresar al sistema del hotel</h3>
         <form class="row g-3 needs-validation" novalidate action="SvLogin" method="post" onsubmit="return validarlogin()">
            
             <div class="input-group mb-5 input-group-lg">
@@ -64,14 +65,14 @@
                     Correcto!
                 </div>
             </div>
-            
-           <div class="container-boton">
-            <input type="submit" value="Ingresar" class="btn btn-primary">
-            <a class="btn btn-primary" href="registrar.jsp">Registrarse</a>
-            </div>
-            
+                       
+            <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+                <div class="container-fluid justify-content-start">
+                    <input type="submit" value="Ingresar" class="btn btn-outline-primary me-2">
+                    <a class="btn btn-outline-primary me-2" role="button" href="registrar.jsp">Registrarse</a>
+                </div>
+            </nav>
         </form>
-      
     </div>
     <script src="js/form-control.js" type="text/javascript"></script>
     <script src="js/validacion.js"></script>

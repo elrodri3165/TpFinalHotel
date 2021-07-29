@@ -1,6 +1,6 @@
 <%-- 
-    Document   : menu
-    Created on : 25/07/2021, 14:01:29
+    Document   : logout
+    Created on : 28/07/2021, 21:10:21
     Author     : Rodrigo Gallo
 --%>
 
@@ -22,33 +22,19 @@
         <title>Hotel Gallito - Login</title>
     </head>
     <body>
-        <% 
-HttpSession misession = request.getSession();
-String user = (String)misession.getAttribute("dni");
-if (user == null){
-    response.sendRedirect("index.jsp");
-}
-else{
-        %>
         <div class="container">
             <h1>Hotel Gallito</h1>
-            <h1>Menu Principal</h1>
+            <h1>Se ha cerrado la sesion correctamente!</h1>
             <img src="img/logo.png" alt="alt"/>
+            <h2>Para volver a ingresar debera volver a login</h2>
         
-            <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+            <nav class="navbar navbar-light bg-light">
                 <form class="container-fluid justify-content-start">
-                    <a class="btn btn-outline-primary me-2" type="button" href="abmhabitaciones.jsp">ABM Habitaciones</a>
-                    
-                    <a class="btn btn-outline-primary me-2" type="button" href="abmclientes.jsp">ABM Clientes</a>
-                    
-                    <a class="btn btn-outline-primary me-2" type="button" href="abmreservas.jsp">ABM Reservas</a>
-                    
-                    <a class="btn btn-sm btn-outline-secondary" type="button" href="index.jsp">Logout</a>                
+                                       
+                    <a class="btn btn-outline-primary me-2" type="button" href="index.jsp">Volver</a>
+                                   
                 </form>
             </nav>
         </div>
-    <script src="js/form-control.js" type="text/javascript"></script>
-    <script src="js/validacion.js"></script>
-    <% } %>
     </body>
 </html>

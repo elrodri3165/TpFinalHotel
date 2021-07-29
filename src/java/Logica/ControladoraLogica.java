@@ -57,6 +57,10 @@ public class ControladoraLogica {
         
     }
     
+    public void crearReserva(){
+        
+    }
+    
     public List <Cliente> traerClientes(){
         return controlJpa.traerClientes();
     }

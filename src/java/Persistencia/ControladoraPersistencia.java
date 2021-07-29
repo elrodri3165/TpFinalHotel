@@ -16,11 +16,7 @@ public class ControladoraPersistencia {
     HabitacionJpaController habiJpa = new HabitacionJpaController();
     ReservaJpaController reserJpa = new ReservaJpaController();
     
-    public List<Empleado> traerEmpleados(){
-        return emplJpa.findEmpleadoEntities();
-    }
-    
-    
+            
     public void CrearEmpleado(Empleado empl){
        
         try {
@@ -48,7 +44,15 @@ public class ControladoraPersistencia {
         } catch (Exception ex) {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+       
+    }
+    
+    public void CrearReserva (Reserva reser){
+        try {
+            reserJpa.create(reser);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public List <Cliente> traerClientes(){
@@ -61,6 +65,10 @@ public class ControladoraPersistencia {
     
     public List <Reserva> traerReservas(){
         return reserJpa.findReservaEntities();
+    }
+    
+    public List<Empleado> traerEmpleados(){
+        return emplJpa.findEmpleadoEntities();
     }
     
 }

@@ -26,63 +26,61 @@
             <h1>Hotel Gallito</h1>
             <h1>Utilize el formulario para registrarse</h1>
             <img src="img/logo.png" alt="alt"/>
-        <form class="row g-3 needs-validation" novalidate action="SvRegister" method="post" onsubmit="return validarLogin()">
+            <form class="row g-3 needs-validation" novalidate action="SvRegister" method="post" onsubmit="return validarLogin()">
             
-              <div class="input-group mb-5 input-group-lg">
-                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-                <input name="apellido" type="text" class="form-control" id="user" placeholder="Apellido" aria-label="Apellido" aria-describedby="addon-wrapping" required>
-                <div class="invalid-feedback">
-                    Por favor ingrese su apellido
-                </div>
-                <div class="valid-feedback">
-                    Correcto!
-                </div>
-            </div>
+                <div class="input-group mb-5 input-group-lg">
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
+                    <input name="apellido" type="text" class="form-control" id="user" placeholder="Apellido" aria-label="Apellido" aria-describedby="addon-wrapping" required>
+                    <div class="invalid-feedback">
+                        Por favor ingrese su apellido
+                    </div>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
+                    </div>
             
-              <div class="input-group mb-5 input-group-lg">
-                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-                <input name="nombre" type="text" class="form-control" id="user" placeholder="Nombre" aria-label="Nombre" aria-describedby="addon-wrapping" required>
-                <div class="invalid-feedback">
-                    Por favor ingrese su nombre
+                <div class="input-group mb-5 input-group-lg">
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
+                    <input name="nombre" type="text" class="form-control" id="user" placeholder="Nombre" aria-label="Nombre" aria-describedby="addon-wrapping" required>
+                    <div class="invalid-feedback">
+                        Por favor ingrese su nombre
+                    </div>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
                 </div>
-                <div class="valid-feedback">
-                    Correcto!
-                </div>
-            </div>
             
            
-            <div class="input-group mb-5 input-group-lg">
-                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-                <input name="dni" type="number" class="form-control" id="dni" placeholder="DNI" aria-label="DNI" aria-describedby="addon-wrapping" required>
-                <div class="invalid-feedback">
-                    Por favor ingrese el usuario a utilizar
+                <div class="input-group mb-5 input-group-lg">
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
+                    <input name="dni" type="number" class="form-control" id="dni" placeholder="DNI" aria-label="DNI" aria-describedby="addon-wrapping" required>
+                    <div class="invalid-feedback">
+                        Por favor ingrese el usuario a utilizar
+                    </div>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
                 </div>
-                <div class="valid-feedback">
-                    Correcto!
-                </div>
-            </div>
 
-            <div class="input-group mb-5 input-group-lg">
-                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-key-fill"></i></span>
-                <input id="password" name="password" type="password" class="form-control" id="clave" placeholder="Clave" aria-label="Clave" aria-describedby="addon-wrapping" required>
-                <div class="invalid-feedback">
-                    Por favor ingrese la clave a utilizar
+                <div class="input-group mb-5 input-group-lg">
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-key-fill"></i></span>
+                    <input id="password" name="password" type="password" class="form-control" id="clave" placeholder="Clave" aria-label="Clave" aria-describedby="addon-wrapping" required>
+                    <div class="invalid-feedback">
+                        Por favor ingrese la clave a utilizar
+                    </div>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
                 </div>
-                <div class="valid-feedback">
-                    Correcto!
-                </div>
-            </div>
-            
-            
-            
-           <div class="container-boton">
-            <input type="submit" value="Ingresar" class="boton-login">
-           
-            </div>
-            
-        </form>
-      
-    </div>
+         
+                <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+                    <div class="container-fluid justify-content-start">
+                        <input type="submit" class="btn btn-outline-primary me-2" role="button" value="Ingresar" class="boton-login">
+                        <a class="btn btn-sm btn-outline-secondary" type="button" href="index.jsp">Volver</a>
+                    </div>
+                </nav> 
+            </form>
+        </div>
     <script src="js/form-control.js" type="text/javascript"></script>
     <script src="js/validacion.js"></script>
     </body>
