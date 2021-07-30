@@ -19,6 +19,9 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <!-- favicon -->
+        <link rel="icon" href="img/favicon.png" type="image/png" />
         <title>Hotel Gallito - Login</title>
     </head>
     <body>
@@ -31,6 +34,8 @@
              </div>
              <div class="modal-body">
                <p>Ingrese un usuario y/o contraseña correcta</p>
+               <p>El usuario o la clave no puede tener espacios o caracteres especiales</p>
+               <p>Solo letras o numeros</p>
              </div>
              <div class="modal-footer">
                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -1,33 +1,25 @@
 function validarLogin(){
     
-var user = document.getElementById("user").value;
 var apellido = document.getElementById("apellido").value;
 var nombre = document.getElementById("nombre").value;
-var email = document.getElementById("email").value;
+var dni = document.getElementById("dni").value;
 var password = document.getElementById("password").value;
     
 var exp = /\w+@\w+\.+[a-z]/;
 
-var espacio = /\s/;
 
-if (user==="" || apellido ==="" || nombre==="" || email==="" || password===""  ){
-    alert ("Debe completar todos los campos");
+
+if (dni==="" || apellido ==="" || nombre==="" || email==="" || password===""  ){
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+    myModal.show();
     return false;
 }
-else if (user.length > 10 || apellido.length > 50 || nombre.length > 50 || email.length > 50 || password.length > 10){
-    alert ("Algun campo es muy largo");
-    return false;
-}
-else if (!exp.test(email)){
-    alert("El correo no es correcto");
+else if (dni.length > 10 || apellido.length > 50 || nombre.length > 50 || email.length > 50 || password.length > 10){
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+    myModal.show();
     return false;
 }
     
-else if (espacio.test(user)){
-    alert("El usuario no es correcto, no puede conener espacios en blanco");
-    return false;
-}
-
 }
 
 
@@ -39,15 +31,18 @@ var password = document.getElementById("password").value;
 var signs= /["`']/gmi;
     
 if (user ==="" || password==="" || user ===null || password===null ){
-    alert ("Debe completar todos los campos");
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+    myModal.show();
     return false;
 }
 else if (user.length>12 || user.length<2 || password.length>10 || password.length<2){
-    alert ("Debe completar todos los campos correctamente");
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'))
+    myModal.show();
     return false;
     }
 else if (signs.test(password)){
-    alert("Complete la clave con letras o numeros validos");
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'));
+    myModal.show();
     return false;
 }
 }

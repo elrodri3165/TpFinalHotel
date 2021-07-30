@@ -19,6 +19,9 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <!-- favicon -->
+        <link rel="icon" href="img/favicon.png" type="image/png" />
         <title>Hotel Gallito - Login</title>
     </head>
     <body>
@@ -26,11 +29,31 @@
             <h1>Hotel Gallito</h1>
             <h1>Utilize el formulario para registrarse</h1>
             <img src="img/logo.png" alt="alt"/>
+            <div class="modal" id="myModal" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Advertencia!!</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>No puede estar ningun campo vacio</p>
+                  <p>El DNI o la clave no puede tener espacios o caracteres especiales</p>
+                  <p>El dni solo adminte numeros</p>
+                  <p>La clave no se puede ser mayor a 10 digitos</p>
+                  <p>El correo, apellido y nombre, no pueden ser mayores a 50 </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div>
             <form class="row g-3 needs-validation" novalidate action="SvRegister" method="post" onsubmit="return validarLogin()">
             
                 <div class="input-group mb-5 input-group-lg">
                     <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-                    <input name="apellido" type="text" class="form-control" id="user" placeholder="Apellido" aria-label="Apellido" aria-describedby="addon-wrapping" required>
+                    <input name="apellido" type="text" class="form-control" id="apellido" placeholder="Apellido" aria-label="Apellido" aria-describedby="addon-wrapping" required>
                     <div class="invalid-feedback">
                         Por favor ingrese su apellido
                     </div>
@@ -41,7 +64,7 @@
             
                 <div class="input-group mb-5 input-group-lg">
                     <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-                    <input name="nombre" type="text" class="form-control" id="user" placeholder="Nombre" aria-label="Nombre" aria-describedby="addon-wrapping" required>
+                    <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Nombre" aria-label="Nombre" aria-describedby="addon-wrapping" required>
                     <div class="invalid-feedback">
                         Por favor ingrese su nombre
                     </div>
