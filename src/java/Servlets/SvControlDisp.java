@@ -35,9 +35,9 @@ public class SvControlDisp extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<p>");
+            out.println("<div class=\"alert alert-danger\" role=\"alert\">");
             out.println("Las fechas no son correctas! 'HASTA' no puede ser anterior a 'DESDE' ni tampoco iguales");
-            out.println("</p>");            
+            out.println("</div>");            
         }   
     }
 
