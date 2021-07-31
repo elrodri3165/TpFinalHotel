@@ -4,6 +4,8 @@
     Author     : Rodrigo Gallo
 --%>
 
+<%@page import="Logica.Empleado"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="Logica.Cliente"%>
 <%@page import="java.util.Date"%>
 <%@page import="Logica.Reserva"%>
@@ -41,14 +43,15 @@ else{
         %>
         <div class="container">
             <h1>Hotel Gallito</h1>
-            <h1>Altas, bajas y modificiones de las reservas del hotel</h1>
+            <h1>Altas, bajas y modificiones de las reservas</h1>
             <img src="img/logo.png" alt="alt"/>
             <div class="container">
         <form class="row g-3 needs-validation" novalidate action="SVAltareserva" method="post">
             
               <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-                <input name="desde" type="date" class="form-control" id="user" placeholder="Desde" aria-label="Desde" aria-describedby="addon-wrapping" required>
+                <input name="desde" type="date" class="form-control" id="desde" placeholder="Desde" aria-label="Desde" aria-describedby="addon-wrapping" 
+                       onchange="ControlDisp()" onblur="ControlDisp()" required>
                 <div class="invalid-feedback">
                     Por favor ingrese la fecha de ingreso
                 </div>
@@ -59,7 +62,8 @@ else{
             
               <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-                <input name="hasta" type="date" class="form-control" placeholder="Hasta" aria-label="Hasta" aria-describedby="addon-wrapping" required>
+                <input name="hasta" type="date" class="form-control" id="hasta" placeholder="Hasta" aria-label="Hasta" aria-describedby="addon-wrapping" 
+                       onchange="ControlDisp()" onblur="ControlDisp()" required>
                 <div class="invalid-feedback">
                     Por favor ingrese la fecha de salida
                 </div>
@@ -70,7 +74,8 @@ else{
             
             <div class="input-group mb-3 input-group-lg">
             <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-            <select name="habitacion" type="text" class="form-control" placeholder="Habitacion" aria-label="Habitacion" aria-describedby="addon-wrapping"  required>
+            <select name="habitacion" type="text" class="form-control" id="habitacion" placeholder="Habitacion" aria-label="Habitacion" aria-describedby="addon-wrapping" 
+                    onchange="ControlDisp()" onblur="ControlDisp()" required>
       
                 <option value="">Seleccione una habitacion</option>
                 
@@ -123,8 +128,10 @@ else{
             </div>
         </div>
             
+            <div id="div"> </div>
+            
            <div class="d-grid gap-2 d-md-block">
-            <input type="submit" value="Ingresar" class="btn btn-primary">
+            <input id="botoningresar" type="submit" value="Ingresar" class="btn btn-primary">
             <a class="btn btn-primary" role="button" href="menu.jsp">Volver</a>
             </div>
             
@@ -143,6 +150,7 @@ else{
                         <th scope="col">Hasta</th>
                         <th scope="col">Nombre de Habitacion</th>
                         <th scope="col">Cliente</th>
+                        <th scope="col">Empleado</th>
                     </tr>
                 </thead>
 
@@ -153,6 +161,11 @@ else{
                         <tr>
                             <% Date desde=reser.getDesde();
                                Date hasta=reser.getHasta();
+                               DateFormat formateadorFechaCorta = DateFormat.getDateInstance(DateFormat.SHORT);
+                               
+                               String desdechico = (formateadorFechaCorta.format(desde));
+                               String hastachico = (formateadorFechaCorta.format(hasta));
+                                                              
                                int id=reser.getIdReserva();
                                Habitacion habi=reser.getHabi();
                                String nombre=habi.getNombre();
@@ -160,6 +173,9 @@ else{
                                String apellidocliente = clie.getApellido();
                                String nombrecliente = clie.getNombre();
                                int dnicliente = clie.getDni();
+                               Empleado empl = reser.getEmpl();
+                               String apellidoEmpleado = empl.getApellido();
+                               String nombreEmpleado = empl.getNombre();
                   
                             %>
                         </tr>
@@ -167,11 +183,11 @@ else{
                             <%=id %>
                         </td>
                         <td>
-                            <%=desde %>
+                            <%=desdechico %>
                         </td>
 
                         <td>
-                            <%=hasta %>
+                            <%=hastachico %>
                         </td>
 
                         <td>
@@ -180,6 +196,10 @@ else{
                         <td>
                             <%=apellidocliente %>, <%=nombrecliente %> - <%=dnicliente %>
                         </td>
+                        
+                        <td>
+                            <%=apellidoEmpleado %>, <%=nombreEmpleado %>
+                        </td>
                         <% } %>
 
                 </tbody>
@@ -187,6 +207,9 @@ else{
         </div>
     </div>
     <script src="js/form-control.js" type="text/javascript"></script>
+    <script src="js/control-disponibilidad.js" type="text/javascript"></script>
+    <script src="js/bloquear-boton.js" type="text/javascript"></script>
+    
         <% } %>
     </body>
 </html>

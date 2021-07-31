@@ -8,7 +8,6 @@ import Logica.session;
 import com.mysql.cj.xdevapi.Session;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,8 +28,7 @@ public class SVAltareserva extends HttpServlet {
    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
+        response.setContentType("text/html;charset=UTF-8");       
     }
 
     @Override
@@ -44,13 +42,13 @@ public class SVAltareserva extends HttpServlet {
             throws ServletException, IOException {
         //extraigo los datos de las fechas
         String des = request.getParameter("desde");
-        int dia = Integer.parseInt(des.substring(9, 10));
+        int dia = Integer.parseInt(des.substring(8, 10));
         int mes = Integer.parseInt(des.substring(6, 7))-1;
         int anio = Integer.parseInt(des.substring(0, 4))-1900;
         
         //extraigo los datos de las fechas       
         String has = request.getParameter("hasta");
-        int dia2 = Integer.parseInt(has.substring(9, 10));
+        int dia2 = Integer.parseInt(has.substring(8, 10));
         int mes2 = Integer.parseInt(has.substring(6, 7))-1;
         int anio2 = Integer.parseInt(has.substring(0, 4))-1900;
                
