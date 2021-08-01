@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +24,7 @@ public class SvControlDisp extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<div class=\"alert alert-danger\" role=\"alert\">");
+            out.println("<div class=\"alert alert-danger\" id=\"divalert\" role=\"alert\">");
             out.println("La habitacion esta ocupada en las fechas seleccionadas!");
             out.println("</div>");
             out.println("<script src=\"js/bloquear-boton.js\" type=\"text/javascript\"></script>");
@@ -35,7 +36,7 @@ public class SvControlDisp extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<div class=\"alert alert-danger\" role=\"alert\">");
+            out.println("<div class=\"alert alert-danger\" id=\"divalert\" role=\"alert\">");
             out.println("Las fechas no son correctas! 'HASTA' no puede ser anterior a 'DESDE' ni tampoco iguales");
             out.println("</div>");            
         }   
@@ -45,6 +46,8 @@ public class SvControlDisp extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+        
         
         ControladoraLogica control = new ControladoraLogica();
         //extraigo los datos de las fechas
@@ -81,7 +84,16 @@ public class SvControlDisp extends HttpServlet {
                 int numeroHabitacionreservada = reservaHabitacion.getIdHabitacion();
                 
                 if (habitacion == numeroHabitacionreservada){
-                    if (desde.after(reservaDesde) || hasta.before(reservaHasta)){
+                    if (desde.before(reservaHasta) && desde.after(reservaDesde)){
+                        processRequest(request, response);
+                    }
+                    else if(hasta.before(reservaHasta) && hasta.after(reservaDesde)){
+                        processRequest(request, response); 
+                    }
+                    else if(desde.equals(reservaDesde)){
+                        processRequest(request, response);
+                    }
+                    else if(hasta.equals(reservaHasta)){
                         processRequest(request, response);
                     }
                 }

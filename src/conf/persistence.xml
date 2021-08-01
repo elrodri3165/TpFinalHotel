@@ -3,6 +3,9 @@
   <persistence-unit name="TpFinalHotelPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Logica.Empleado</class>
+    <class>Logica.Cliente</class>
+    <class>Logica.Habitacion</class>
+    <class>Logica.Reserva</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tpfinal?serverTimezone=UTC"/>
