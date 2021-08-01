@@ -65,8 +65,8 @@ else{
             <div class="container">
                 <form class="row g-3 needs-validation" novalidate action="SVAltareserva" onsubmit="return validarSubmit()" method="post">
             
-              <div class="input-group mb-5 input-group-lg">
-                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
+            <div class="input-group mb-5 input-group-lg">
+                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar-date-fill"></i></span>
                 <input name="desde" type="date" class="form-control" id="desde" placeholder="Desde" aria-label="Desde" aria-describedby="addon-wrapping" 
                        onchange="ControlDisp()" onblur="ControlDisp()" required>
                 <div class="invalid-feedback">
@@ -78,7 +78,7 @@ else{
             </div>
             
               <div class="input-group mb-5 input-group-lg">
-                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
+                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar-date-fill"></i></span>
                 <input name="hasta" type="date" class="form-control" id="hasta" placeholder="Hasta" aria-label="Hasta" aria-describedby="addon-wrapping" 
                        onchange="ControlDisp()" onblur="ControlDisp()" required>
                 <div class="invalid-feedback">
@@ -90,7 +90,7 @@ else{
             </div>
             
             <div class="input-group mb-3 input-group-lg">
-            <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
+            <span class="input-group-text" id="addon-wrapping"><i class="bi bi-list-check"></i></span>
             <select name="habitacion" type="text" class="form-control" id="habitacion" placeholder="Habitacion" aria-label="Habitacion" aria-describedby="addon-wrapping" 
                     onchange="ControlDisp()" onblur="ControlDisp()" required>
       
@@ -107,7 +107,7 @@ else{
                                int id=habie.getIdHabitacion(); 
                             %>
                             <option value="<%=id %>">
-                                <%=nombre %>, Piso: <%=piso %>, Tipo:  <%=tipo %>, Precio: <%=precio %>
+                                <%=nombre %>, Piso: <%=piso %>, Tipo:  <%=tipo %>, Precio:$ <%=precio %>
                             </option>
                         <% } %>
                
@@ -121,7 +121,7 @@ else{
         </div>
             
             <div class="input-group mb-3 input-group-lg">
-            <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
+            <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-lines-fill"></i></span>
             <select name="cliente" type="text" class="form-control" placeholder="Cliente" aria-label="Cliente" aria-describedby="addon-wrapping"  required>
       
                 <option value="">Seleccione un cliente</option>
@@ -144,6 +144,15 @@ else{
                 Correcto!
             </div>
         </div>
+            
+         <div class="input-group mb-5 input-group-lg">
+             <span class="input-group-text" id="addon-wrapping"><i class="bi bi-currency-dollar"></i></span>
+             <div class="form-floating">
+                <input name="valortotal" id="valortotal" type="number" class="form-control" placeholder="Valor total" aria-label="Valor total" 
+                       aria-describedby="addon-wrapping" disabled="true">
+                <label for="valortotal">Valor total de la reserva</label>
+             </div>
+        </div>    
             
             <div id="div"> </div>
             
@@ -168,6 +177,7 @@ else{
                         <th scope="col">Nombre de Habitacion</th>
                         <th scope="col">Cliente</th>
                         <th scope="col">Empleado</th>
+                        <th scope="col">Costo total</th>
                     </tr>
                 </thead>
 
@@ -178,11 +188,12 @@ else{
                         <tr>
                             <% Date desde=reser.getDesde();
                                Date hasta=reser.getHasta();
+                               //formateador de fecha
                                DateFormat formateadorFechaCorta = DateFormat.getDateInstance(DateFormat.SHORT);
-                               
+                               //achico cada fecha
                                String desdechico = (formateadorFechaCorta.format(desde));
                                String hastachico = (formateadorFechaCorta.format(hasta));
-                                                              
+                               //obtengo los datos                                                                                           
                                int id=reser.getIdReserva();
                                Habitacion habi=reser.getHabi();
                                String nombre=habi.getNombre();
@@ -193,7 +204,10 @@ else{
                                Empleado empl = reser.getEmpl();
                                String apellidoEmpleado = empl.getApellido();
                                String nombreEmpleado = empl.getNombre();
-                  
+                               //obtengo el costo calculando con los dias
+                               Long dias = hasta.getTime() - desde.getTime();
+                               int precio = habi.getPrecio();
+                               Long costo = dias * precio /86400000;
                             %>
                         </tr>
                         <td>
@@ -217,6 +231,10 @@ else{
                         <td>
                             <%=apellidoEmpleado %>, <%=nombreEmpleado %>
                         </td>
+                        
+                        <td>
+                            $ <%=costo %>
+                        </td>
                         <% } %>
 
                 </tbody>
@@ -226,6 +244,7 @@ else{
     <script src="js/form-control.js" type="text/javascript"></script>
     <script src="js/control-disponibilidad.js" type="text/javascript"></script>
     <script src="js/validar-submit.js" type="text/javascript"></script>
+    <script src="js/sumar-total.js" type="text/javascript"></script>
     
         <% } %>
     </body>

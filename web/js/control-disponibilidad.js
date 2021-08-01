@@ -1,4 +1,5 @@
 function ControlDisp(){
+    SumarTotal();
     var desde, hasta, habitacion, div;
     
     div = document.getElementById('div');
