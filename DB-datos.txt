@@ -2,4 +2,6 @@ db name: tpfinal
 db user: tpfinal
 db pass: tpfinal
 
+port: 3306
+
 todos los privilegios
