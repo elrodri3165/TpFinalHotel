@@ -42,11 +42,28 @@ if (user == null){
 else{
         %>
         <div class="container">
+              <div class="modal" id="myModal" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Advertencia!!!</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>La habitacion ya esta reservada en las fechas seleccionadas</p>
+                      <p>Por favor verificar que las fechas no sean iguales!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <h1>Hotel Gallito</h1>
             <h1>Altas, bajas y modificiones de las reservas</h1>
             <img src="img/logo.png" alt="alt"/>
             <div class="container">
-        <form class="row g-3 needs-validation" novalidate action="SVAltareserva" method="post">
+                <form class="row g-3 needs-validation" novalidate action="SVAltareserva" onsubmit="return validarSubmit()" method="post">
             
               <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
@@ -208,7 +225,7 @@ else{
     </div>
     <script src="js/form-control.js" type="text/javascript"></script>
     <script src="js/control-disponibilidad.js" type="text/javascript"></script>
-    <script src="js/bloquear-boton.js" type="text/javascript"></script>
+    <script src="js/validar-submit.js" type="text/javascript"></script>
     
         <% } %>
     </body>
