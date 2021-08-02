@@ -25,9 +25,9 @@ public class ControladoraLogica {
     }
     
  
-    public void crearEmpleado(String nombre, String apellido, int dni, String clave){
+    public void crearEmpleado(String nombre, String apellido, int dni, String clave, String cargo, String fechanacimiento, String direccion){
        
-        Empleado empl = new Empleado(dni, nombre, apellido, clave);
+        Empleado empl = new Empleado(dni, nombre, apellido, clave, cargo, fechanacimiento, direccion);
         
         controlJpa.CrearEmpleado(empl);
     }
@@ -54,7 +54,7 @@ public class ControladoraLogica {
         clie.setNombre(nombre);
         clie.setEmail(Email);
         clie.setDni(dni);
-       
+               
         controlJpa.CearCliente(clie);
         
     }

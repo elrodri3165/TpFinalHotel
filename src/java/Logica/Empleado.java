@@ -24,18 +24,23 @@ public class Empleado implements Serializable {
     String Nombre;
     String Apellido;
     String Clave;
+    String Cargo;
+    String Fechanacimiento;
+    String Direccion;
 
     public Empleado() {
     }
 
-    public Empleado(int dni, String Nombre, String Apellido, String Clave) {
+    public Empleado(int dni, String Nombre, String Apellido, String Clave, String Cargo, String Fechanacimiento, String Direccion) {
         this.dni = dni;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
         this.Clave = Clave;
-       
+        this.Cargo = Cargo;
+        this.Fechanacimiento = Fechanacimiento;
+        this.Direccion = Direccion;
     }
-
+    
     public int getDni() {
         return dni;
     }
@@ -52,6 +57,30 @@ public class Empleado implements Serializable {
         return Clave;
     }
 
+    public String getCargo() {
+        return Cargo;
+    }
+
+    public String getFechanacimiento() {
+        return Fechanacimiento;
+    }
+
+    public String getDireccion() {
+        return Direccion;
+    }
+
+    public void setCargo(String Cargo) {
+        this.Cargo = Cargo;
+    }
+
+    public void setFechanacimiento(String Fechanacimiento) {
+        this.Fechanacimiento = Fechanacimiento;
+    }
+
+    public void setDireccion(String Direccion) {
+        this.Direccion = Direccion;
+    }
+        
     public void setDni(int dni) {
         this.dni = dni;
     }

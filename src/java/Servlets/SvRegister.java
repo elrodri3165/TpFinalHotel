@@ -37,6 +37,9 @@ public class SvRegister extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String password = request.getParameter("password");
         int dni = Integer.parseInt(request.getParameter("dni"));
+        String cargo = request.getParameter("cargo");
+        String fechanacimiento = request.getParameter("fechanacimiento");
+        String direccion = request.getParameter("direccion");
         
         request.getSession().setAttribute("apellido", apellido);
         request.getSession().setAttribute("nombre", nombre);
@@ -44,7 +47,7 @@ public class SvRegister extends HttpServlet {
         request.getSession().setAttribute("password", password);
         
         ControladoraLogica control = new ControladoraLogica();
-        control.crearEmpleado(nombre, apellido, dni, password);
+        control.crearEmpleado(nombre, apellido, dni, password, cargo, fechanacimiento, direccion);
         
         response.sendRedirect("index.jsp");
           

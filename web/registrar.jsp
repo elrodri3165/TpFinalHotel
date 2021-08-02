@@ -41,7 +41,7 @@
                   <p>El DNI o la clave no puede tener espacios o caracteres especiales</p>
                   <p>El dni solo adminte numeros</p>
                   <p>La clave no se puede ser mayor a 10 digitos</p>
-                  <p>El correo, apellido y nombre, no pueden ser mayores a 50 </p>
+                  <p>El apellido, nombre, cargo, direccion no pueden ser mayores a 50 caracteres</p>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -60,7 +60,7 @@
                     <div class="valid-feedback">
                         Correcto!
                     </div>
-                    </div>
+                </div>
             
                 <div class="input-group mb-5 input-group-lg">
                     <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
@@ -95,6 +95,40 @@
                         Correcto!
                     </div>
                 </div>
+                
+                <div class="input-group mb-5 input-group-lg">
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-lines-fill"></i></span>
+                    <input name="cargo" type="text" class="form-control" id="cargo" placeholder="Cargo" aria-label="Cargo" aria-describedby="addon-wrapping" required>
+                    <div class="invalid-feedback">
+                        Por favor ingrese su cargo
+                    </div>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
+                </div>
+                
+                <div class="input-group mb-5 input-group-lg">
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-mailbox2"></i></span>
+                    <input name="direccion" type="text" class="form-control" id="direccion" placeholder="Direccion" aria-label="Direccion" aria-describedby="addon-wrapping" required>
+                    <div class="invalid-feedback">
+                        Por favor ingrese su direccion
+                    </div>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
+                </div>
+                
+                <div class="input-group mb-5 input-group-lg">
+                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar-date-fill"></i></span>
+                <input name="fechanacimiento" type="date" class="form-control" id="fechanacimiento" placeholder="Fecha de nacimiento" aria-label="Fecha de nacimiento" 
+                       aria-describedby="addon-wrapping" required>
+                <div class="invalid-feedback">
+                    Por favor ingrese la fecha de nacimiento
+                </div>
+                <div class="valid-feedback">
+                    Correcto!
+                </div>
+            </div>
          
                 <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
                     <div class="container-fluid justify-content-start">
