@@ -27,7 +27,6 @@ public class SvControlDisp extends HttpServlet {
             out.println("<div class=\"alert alert-danger\" id=\"divalert\" role=\"alert\">");
             out.println("La habitacion esta ocupada en las fechas seleccionadas!");
             out.println("</div>");
-            out.println("<script src=\"js/bloquear-boton.js\" type=\"text/javascript\"></script>");
         }   
     }
     
@@ -38,6 +37,17 @@ public class SvControlDisp extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             out.println("<div class=\"alert alert-danger\" id=\"divalert\" role=\"alert\">");
             out.println("Las fechas no son correctas! 'HASTA' no puede ser anterior a 'DESDE' ni tampoco iguales");
+            out.println("</div>");            
+        }   
+    }
+    
+    protected void processRequest3(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<div class=\"alert alert-danger\" id=\"divalert\" role=\"alert\">");
+            out.println("No pueden realizar reservas anteriores al dia de la fecha!");
             out.println("</div>");            
         }   
     }
@@ -65,6 +75,11 @@ public class SvControlDisp extends HttpServlet {
         //creo las dos variables de las fechas
         Date desde = new Date(anio, mes, dia);
         Date hasta = new Date(anio2, mes2, dia2);
+        Date hoy = new Date();
+        
+        if (desde.before(hoy) || hasta.before(hoy)){
+            processRequest3(request, response);
+        }
         
         //creo el objeto habitacion con la seleccioanda
         String habi = request.getParameter("habitacion");

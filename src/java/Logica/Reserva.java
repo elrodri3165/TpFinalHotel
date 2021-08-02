@@ -31,6 +31,9 @@ public class Reserva implements Serializable {
     Date Desde = new Date();
     @Temporal(javax.persistence.TemporalType.DATE)
     Date Hasta = new Date();
+    @Temporal(javax.persistence.TemporalType.DATE)
+    Date Alta = new Date();
+    String Personas;
     
     @OneToOne
     Habitacion habi;
@@ -44,14 +47,14 @@ public class Reserva implements Serializable {
     public Reserva() {
     }
 
-    public Reserva(int idReserva,  Habitacion habi, Empleado empl, Cliente clie) {
+    public Reserva(int idReserva, String Personas, Habitacion habi, Empleado empl, Cliente clie) {
         this.idReserva = idReserva;
+        this.Personas = Personas;
         this.habi = habi;
         this.empl = empl;
         this.clie = clie;
     }
-    
-    
+       
     public int getIdReserva() {
         return idReserva;
     }
@@ -75,7 +78,15 @@ public class Reserva implements Serializable {
     public Cliente getClie() {
         return clie;
     }
-   
+
+    public Date getAlta() {
+        return Alta;
+    }
+
+    public String getPersonas() {
+        return Personas;
+    }
+     
     public void setIdReserva(int idReserva) {
         this.idReserva = idReserva;
     }
@@ -99,5 +110,13 @@ public class Reserva implements Serializable {
     public void setClie(Cliente clie) {
         this.clie = clie;
     }
-   
+
+    public void setAlta(Date Alta) {
+        this.Alta = Alta;
+    }
+
+    public void setPersonas(String Personas) {
+        this.Personas = Personas;
+    }
+    
 }

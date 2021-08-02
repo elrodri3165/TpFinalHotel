@@ -17,6 +17,7 @@ function ControlDisp(){
         
         if(this.readyState == 4 && this.status == 200){
             document.getElementById('div').innerHTML = this.responseText;
+            VerificarPersonas();
            }
     }
     

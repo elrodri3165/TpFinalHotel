@@ -59,7 +59,7 @@ public class ControladoraLogica {
         
     }
     
-    public void crearReserva(Date desde, Date hasta, Habitacion habi, Empleado empl, Cliente clie ){
+    public void crearReserva(Date desde, Date hasta, Habitacion habi, Empleado empl, Cliente clie, Date alta, String Personas ){
         
         Reserva reser = new Reserva();
        
@@ -68,6 +68,8 @@ public class ControladoraLogica {
         reser.setHabi(habi);
         reser.setEmpl(empl);
         reser.setClie(clie);
+        reser.setAlta(alta);
+        reser.setPersonas(Personas);
         
         controlJpa.CrearReserva(reser);
         

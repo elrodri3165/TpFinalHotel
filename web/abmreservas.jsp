@@ -4,6 +4,7 @@
     Author     : Rodrigo Gallo
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Logica.Empleado"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="Logica.Cliente"%>
@@ -40,7 +41,9 @@ if (user == null){
     response.sendRedirect("index.jsp");
 }
 else{
-        %>
+    Date hoy = new Date();
+    String newstring = new SimpleDateFormat("yyyy-MM-dd").format(hoy);
+    %>
         <div class="container">
               <div class="modal" id="myModal" tabindex="-1">
                 <div class="modal-dialog">
@@ -52,6 +55,7 @@ else{
                     <div class="modal-body">
                       <p>La habitacion ya esta reservada en las fechas seleccionadas</p>
                       <p>Por favor verificar que las fechas no sean iguales!</p>
+                      <p>Por favor verificar la cantidad de personas que intenta reservar</p>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -77,7 +81,7 @@ else{
                 </div>
             </div>
             
-              <div class="input-group mb-5 input-group-lg">
+            <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar-date-fill"></i></span>
                 <input name="hasta" type="date" class="form-control" id="hasta" placeholder="Hasta" aria-label="Hasta" aria-describedby="addon-wrapping" 
                        onchange="ControlDisp()" onblur="ControlDisp()" required>
@@ -145,13 +149,40 @@ else{
             </div>
         </div>
             
+        <div class="input-group mb-5 input-group-lg">
+                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-people-fill"></i></span>
+                <select name="personas" type="" class="form-control" id="cantidadpersonas" placeholder="Cantidad de peronas" aria-label="Cantidad de personas" 
+                        aria-describedby="addon-wrapping" onchange="ControlDisp()" onblur="ControlDisp()" required>
+                <div class="invalid-feedback">
+                    Por favor seleccione las personas
+                </div>
+                <div class="valid-feedback">
+                    Correcto!
+                </div>
+                    <option value="">Por favor seleccione las personas</option>
+                    <option value="1">1 persona</option>
+                    <option value="2">2 personas</option>
+                    <option value="3">3 personas</option>
+                    <option value="4">4 personas</option>
+                </select>
+        </div>
+          
+        <div class="input-group mb-5 input-group-lg">
+            <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar-date-fill"></i></span>
+            <div class="form-floating">
+                <input name="alta" type="date" class="form-control" placeholder="Fecha de alta" aria-label="Fecha de alta" 
+                       aria-describedby="addon-wrapping" value="<%=newstring %>" disabled="true">
+                <label for="alta">Fecha de alta</label>
+            </div>
+        </div>
+            
          <div class="input-group mb-5 input-group-lg">
              <span class="input-group-text" id="addon-wrapping"><i class="bi bi-currency-dollar"></i></span>
              <div class="form-floating">
                 <input name="valortotal" id="valortotal" type="number" class="form-control" placeholder="Valor total" aria-label="Valor total" 
                        aria-describedby="addon-wrapping" disabled="true">
                 <label for="valortotal">Valor total de la reserva</label>
-             </div>
+            </div>
         </div>    
             
             <div id="div"> </div>
@@ -178,6 +209,9 @@ else{
                         <th scope="col">Cliente</th>
                         <th scope="col">Empleado</th>
                         <th scope="col">Costo total</th>
+                        <th scope="col">Personas</th>
+                        <th scope="col">Alta</th>
+                        
                     </tr>
                 </thead>
 
@@ -204,6 +238,9 @@ else{
                                Empleado empl = reser.getEmpl();
                                String apellidoEmpleado = empl.getApellido();
                                String nombreEmpleado = empl.getNombre();
+                               String personas = reser.getPersonas();
+                               Date alta = reser.getAlta();
+                               String altachico = (formateadorFechaCorta.format(hoy));
                                //obtengo el costo calculando con los dias
                                Long dias = hasta.getTime() - desde.getTime();
                                int precio = habi.getPrecio();
@@ -235,6 +272,12 @@ else{
                         <td>
                             $ <%=costo %>
                         </td>
+                        <td>
+                            <%=personas %> Persona/s
+                        </td>
+                        <td>
+                            <%=altachico %>
+                        </td>
                         <% } %>
 
                 </tbody>
@@ -245,7 +288,7 @@ else{
     <script src="js/control-disponibilidad.js" type="text/javascript"></script>
     <script src="js/validar-submit.js" type="text/javascript"></script>
     <script src="js/sumar-total.js" type="text/javascript"></script>
-    
+    <script src="js/verificar-personas.js" type="text/javascript"></script>
         <% } %>
     </body>
 </html>

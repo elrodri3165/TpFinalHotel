@@ -68,13 +68,19 @@ public class SVAltareserva extends HttpServlet {
         HttpSession misession = request.getSession(true);
         int empleado = Integer.parseInt((String) misession.getAttribute("dni"));
         
+        //extraigo personas
+        String personas = request.getParameter("personas");
+        
+        //creo fecha de hoy
+        Date hoy = new Date();
+                
         //creo los objetos habitacion, reserva, cliente y empleado con los id
         ControladoraLogica control = new ControladoraLogica();
         Empleado empl = control.traerunEmpleado(empleado);
         Habitacion habit = control.traerHabitacion((int) habitacion);
         Cliente cli = control.traerCliente(cliente);
         
-        control.crearReserva(desde, hasta, habit, empl, cli);
+        control.crearReserva(desde, hasta, habit, empl, cli, hoy, personas);
                 
         response.sendRedirect("abmreservas.jsp");
         
