@@ -25,7 +25,9 @@ public class Cliente implements Serializable {
     @Basic
     String Apellido;
     String Nombre;
-    String Email;
+    String Fechanacimiento;
+    String Direccion;
+    String Profesion;
     
     @OneToMany
     List <Reserva> listaReserva;
@@ -33,14 +35,28 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(int Dni, String Apellido, String Nombre, String Email, List<Reserva> listaReserva) {
-        this.dni = Dni;
+    public Cliente(int dni, String Apellido, String Nombre, String Fechanacimiento, String Direccion, String Profesion, List<Reserva> listaReserva) {
+        this.dni = dni;
         this.Apellido = Apellido;
         this.Nombre = Nombre;
-        this.Email = Email;
+        this.Fechanacimiento = Fechanacimiento;
+        this.Direccion = Direccion;
+        this.Profesion = Profesion;
         this.listaReserva = listaReserva;
     }
 
+    public void setFechanacimiento(String Fechanacimiento) {
+        this.Fechanacimiento = Fechanacimiento;
+    }
+
+    public void setDireccion(String Direccion) {
+        this.Direccion = Direccion;
+    }
+
+    public void setProfesion(String Profesion) {
+        this.Profesion = Profesion;
+    }
+           
     public void setDni(int Dni) {
         this.dni = Dni;
     }
@@ -52,11 +68,7 @@ public class Cliente implements Serializable {
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
     }
-
-    public void setEmail(String Email) {
-        this.Email = Email;
-    }
-
+   
     public void setListaReserva(List<Reserva> listaReserva) {
         this.listaReserva = listaReserva;
     }
@@ -72,11 +84,19 @@ public class Cliente implements Serializable {
     public String getNombre() {
         return Nombre;
     }
-
-    public String getEmail() {
-        return Email;
+    
+    public String getFechanacimiento() {
+        return Fechanacimiento;
     }
 
+    public String getDireccion() {
+        return Direccion;
+    }
+
+    public String getProfesion() {
+        return Profesion;
+    }
+    
     public List<Reserva> getListaReserva() {
         return listaReserva;
     }

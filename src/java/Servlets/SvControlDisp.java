@@ -81,11 +81,10 @@ public class SvControlDisp extends HttpServlet {
             processRequest3(request, response);
         }
         
-        //creo el objeto habitacion con la seleccioanda
+        //obtengo el numero de habitacion seleccioanda
         String habi = request.getParameter("habitacion");
         int habitacion = Integer.parseInt(habi);
-        Habitacion habit = control.traerHabitacion((int) habitacion);
-        
+                
         //creo la lista de reservas concretadas en la base.
         List <Reserva> ListaReservas = control.traerReservas();
         
@@ -117,8 +116,6 @@ public class SvControlDisp extends HttpServlet {
         else {
             processRequest2(request, response);
         }
-        
-        
     }
 
     

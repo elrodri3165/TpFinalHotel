@@ -37,17 +37,14 @@ public class SvAltacliente extends HttpServlet {
         
         String apellido = request.getParameter("apellido");
         String nombre = request.getParameter("nombre");
-        String email = request.getParameter("email");
         int dni = Integer.parseInt(request.getParameter("dni"));
-        
-        request.getSession().setAttribute("apellido", apellido);
-        request.getSession().setAttribute("nombre", nombre);
-        request.getSession().setAttribute("dnicliente", dni);
-        request.getSession().setAttribute("email", email);
-        
+        String fechanacimiento = request.getParameter("fechanacimiento");
+        String direccion = request.getParameter("direccion");
+        String profesion = request.getParameter("profesion");
+             
         ControladoraLogica control = new ControladoraLogica();
-        control.crearCliente(apellido, nombre, dni, email);
-        
+        control.crearCliente(apellido, nombre, dni, fechanacimiento, direccion, profesion);
+                       
         response.sendRedirect("abmclientes.jsp");
                
     }

@@ -77,14 +77,37 @@ else{
                 </div>
 
                 <div class="input-group mb-5 input-group-lg">
-                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-fill"></i></span>
-                    <input name="email" type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="addon-wrapping" required>
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar-check-fill"></i></span>
+                    <input name="fechanacimiento" type="date" class="form-control" placeholder="Fecha de nacimiento" aria-label="Fecha de nacimiento" aria-describedby="addon-wrapping" required>
                     <div class="invalid-feedback">
-                        Por favor ingrese el E-Mail
+                        Por favor ingrese la fecha de nacimiento
                     </div>
                     <div class="valid-feedback">
                         Correcto!
                     </div>
+                </div>
+                
+                <div class="input-group mb-5 input-group-lg">
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-lines-fill"></i></span>
+                    <input name="profesion" type="text" class="form-control" placeholder="Profesión" aria-label="Profesión" aria-describedby="addon-wrapping" required>
+                    <div class="invalid-feedback">
+                        Por favor ingrese la profesión
+                    </div>
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
+                </div>
+                
+                
+                <div class="input-group mb-5 input-group-lg">
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-mailbox2"></i></span>
+                    <input name="direccion" type="text" class="form-control" placeholder="Dirección" aria-label="Dirección" aria-describedby="addon-wrapping" required>
+                    <div class="invalid-feedback">
+                        Por favor ingrese la dirección
+                    <div class="valid-feedback">
+                        Correcto!
+                    </div>
+                </div>
                 </div>
 
                 <div class="d-grid gap-2 d-md-block">
@@ -95,6 +118,7 @@ else{
             </form>
         </div>
         
+        
         <h2>Listado de Clientes</h2>
         
         <div class="table-responsive">
@@ -103,7 +127,9 @@ else{
                     <tr>
                         <th scope="col">Apellido y nombre</th>
                         <th scope="col">DNI</th>
-                        <th scope="col">EMAIL</th>
+                        <th scope="col">Fecha de nacimiento</th>
+                        <th scope="col">Profesion</th>
+                        <th scope="col">Direccion</th>
                     </tr>
                 </thead>
 
@@ -113,8 +139,11 @@ else{
                         for (Cliente Clien: listaClientes){ %>
                         <tr>
                             <% String nombreCompleto=Clien.getApellido() + " " + Clien.getNombre(); 
-                               String email=Clien.getEmail(); 
-                               int dni=Clien.getDni(); %>
+                               String fechanacimiento=Clien.getFechanacimiento();
+                               int dni=Clien.getDni(); 
+                               String direccion = Clien.getDireccion();
+                               String profesion = Clien.getProfesion();
+                            %>
                         </tr>
                         <td>
                             <%=nombreCompleto %>
@@ -125,7 +154,15 @@ else{
                         </td>
 
                         <td>
-                            <%=email %>
+                            <%=fechanacimiento %>
+                        </td>
+                        
+                        <td>
+                            <%=profesion %>
+                        </td>
+                        
+                        <td>
+                            <%=direccion %>
                         </td>
                         <% } %>
 
@@ -133,6 +170,7 @@ else{
             </table>
         </div>
     </div>
+    
     <script src="js/form-control.js" type="text/javascript"></script>
 <% } %>
 </body>

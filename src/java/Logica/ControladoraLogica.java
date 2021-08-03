@@ -46,14 +46,16 @@ public class ControladoraLogica {
     }
     
     
-    public void crearCliente(String apellido, String nombre, int dni, String Email){
+    public void crearCliente(String apellido, String nombre, int dni, String fechanacimiento, String direccion, String profesion){
         
         Cliente clie = new Cliente();
         
         clie.setApellido(apellido);
         clie.setNombre(nombre);
-        clie.setEmail(Email);
         clie.setDni(dni);
+        clie.setDireccion(direccion);
+        clie.setFechanacimiento(fechanacimiento);
+        clie.setProfesion(profesion);
                
         controlJpa.CearCliente(clie);
         
