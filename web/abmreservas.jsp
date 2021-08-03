@@ -4,6 +4,7 @@
     Author     : Rodrigo Gallo
 --%>
 
+<%@page import="java.util.TimeZone"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Logica.Empleado"%>
 <%@page import="java.text.DateFormat"%>
@@ -41,6 +42,7 @@ if (user == null){
     response.sendRedirect("index.jsp");
 }
 else{
+    TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     Date hoy = new Date();
     String newstring = new SimpleDateFormat("yyyy-MM-dd").format(hoy);
     %>
@@ -240,7 +242,7 @@ else{
                                String nombreEmpleado = empl.getNombre();
                                String personas = reser.getPersonas();
                                Date alta = reser.getAlta();
-                               String altachico = (formateadorFechaCorta.format(hoy));
+                               String altachico = (formateadorFechaCorta.format(alta));
                                //obtengo el costo calculando con los dias
                                Long dias = hasta.getTime() - desde.getTime();
                                int precio = habi.getPrecio();
