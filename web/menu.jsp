@@ -4,6 +4,8 @@
     Author     : Rodrigo Gallo
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -32,6 +34,8 @@ if (user == null){
     response.sendRedirect("index.jsp");
 }
 else{
+    Date hoy = new Date();
+    String newstring = new SimpleDateFormat("yyyy-MM-dd").format(hoy);
         %>
         <div class="container">
             <h1>Hotel Gallito</h1>
@@ -45,6 +49,8 @@ else{
                     <a class="btn btn-outline-primary me-2" type="button" href="abmclientes.jsp">ABM Clientes</a>
                     
                     <a class="btn btn-outline-primary me-2" type="button" href="abmreservas.jsp">ABM Reservas</a>
+                    
+                    <a class="btn btn-outline-primary me-2" type="button" href="reservaspordia.jsp?dia=<%=newstring%>">Reservas por dia</a>
                     
                     <a class="btn btn-sm btn-outline-secondary" type="button" href="index.jsp">Logout</a>                
                 </form>

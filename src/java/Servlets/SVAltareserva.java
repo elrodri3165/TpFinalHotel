@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,6 +41,7 @@ public class SVAltareserva extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
         //extraigo los datos de las fechas
         String des = request.getParameter("desde");
         int dia = Integer.parseInt(des.substring(8, 10));
