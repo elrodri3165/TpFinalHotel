@@ -166,8 +166,10 @@ else{
                     <option value="4">4 personas</option>
                 </select>
         </div>
+            
+        <div id="div"> </div>
           
-        <div class="input-group mb-5 input-group-lg">
+        <div class="input-group mb-3">
             <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar-date-fill"></i></span>
             <div class="form-floating">
                 <input name="alta" type="date" class="form-control" placeholder="Fecha de alta" aria-label="Fecha de alta" 
@@ -176,7 +178,7 @@ else{
             </div>
         </div>
             
-         <div class="input-group mb-5 input-group-lg">
+         <div class="input-group mb-3">
              <span class="input-group-text" id="addon-wrapping"><i class="bi bi-currency-dollar"></i></span>
              <div class="form-floating">
                 <input name="valortotal" id="valortotal" type="number" class="form-control" placeholder="Valor total" aria-label="Valor total" 
@@ -184,16 +186,14 @@ else{
                 <label for="valortotal">Valor total de la reserva</label>
             </div>
         </div>    
-            
-            <div id="div"> </div>
-            
-           <div class="d-grid gap-2 d-md-block">
+                        
+        <div class="d-grid gap-2 d-md-block">
             <input id="botoningresar" type="submit" value="Ingresar" class="btn btn-primary">
             <a class="btn btn-primary" role="button" href="menu.jsp">Volver</a>
-            </div>
+        </div>
             
         </form>
-            </div>
+    </div>
       
             
             <h2>Listado de Reservas del hotel</h2>
