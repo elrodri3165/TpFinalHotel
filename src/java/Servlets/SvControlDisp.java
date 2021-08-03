@@ -51,8 +51,7 @@ public class SvControlDisp extends HttpServlet {
             out.println("</div>");            
         }   
     }
-
-    
+      
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -76,11 +75,7 @@ public class SvControlDisp extends HttpServlet {
         Date desde = new Date(anio, mes, dia);
         Date hasta = new Date(anio2, mes2, dia2);
         Date hoy = new Date();
-        
-        if (desde.before(hoy) || hasta.before(hoy)){
-            processRequest3(request, response);
-        }
-        
+                        
         //obtengo el numero de habitacion seleccioanda
         String habi = request.getParameter("habitacion");
         int habitacion = Integer.parseInt(habi);
@@ -115,6 +110,11 @@ public class SvControlDisp extends HttpServlet {
         }
         else {
             processRequest2(request, response);
+        }
+        
+        //verifico que no se quieran hacer reservas anteriores al dia de la fecha
+        if (desde.before(hoy) || hasta.before(hoy)){
+            processRequest3(request, response); 
         }
     }
 
