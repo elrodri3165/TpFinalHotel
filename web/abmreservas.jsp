@@ -4,6 +4,7 @@
     Author     : Rodrigo Gallo
 --%>
 
+<%@page import="java.util.Collections"%>
 <%@page import="java.util.TimeZone"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Logica.Empleado"%>
@@ -46,7 +47,7 @@ else{
     Date hoy = new Date();
     String newstring = new SimpleDateFormat("yyyy-MM-dd").format(hoy);
     %>
-        <div class="container">
+        <div class="container-xl">
               <div class="modal" id="myModal" tabindex="-1">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -196,23 +197,23 @@ else{
             
         </form>
     </div>
-      
-            
+        
             <h2>Listado de Reservas del hotel</h2>
             
            <div class="table-responsive">
             <table class="table table-primary table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">Nº Reserva</th>
+                        <th scope="col">NºReserva</th>
                         <th scope="col">Desde</th>
                         <th scope="col">Hasta</th>
-                        <th scope="col">Nombre de Habitacion</th>
+                        <th scope="col">Habitacion</th>
                         <th scope="col">Cliente</th>
                         <th scope="col">Empleado</th>
                         <th scope="col">Costo total</th>
                         <th scope="col">Personas</th>
                         <th scope="col">Alta</th>
+                        <th scope="col">Eliminar</th>
                     </tr>
                 </thead>
 
@@ -278,6 +279,9 @@ else{
                         </td>
                         <td>
                             <%=altachico %>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" role="button" href="SvEliminarreserva?id=<%=id %>"><i class="bi bi-trash-fill"></i></a>
                         </td>
                         <% } %>
 

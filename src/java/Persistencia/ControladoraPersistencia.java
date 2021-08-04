@@ -4,6 +4,7 @@ import Logica.Cliente;
 import Logica.Empleado;
 import Logica.Habitacion;
 import Logica.Reserva;
+import Persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,6 +82,10 @@ public class ControladoraPersistencia {
     
     public Cliente traerunCliente (int dni){
         return clieJpa.findCliente(dni);
+    }
+    
+    public void eliminarReserva (int idreserva) throws NonexistentEntityException{
+        reserJpa.destroy(idreserva);
     }
     
 }

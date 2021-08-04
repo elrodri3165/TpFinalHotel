@@ -1,6 +1,7 @@
 package Logica;
 
 import Persistencia.ControladoraPersistencia;
+import Persistencia.exceptions.NonexistentEntityException;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.util.Date;
 import java.util.List;
@@ -103,6 +104,11 @@ public class ControladoraLogica {
     
     public Cliente traerCliente (int dni){
         return controlJpa.traerunCliente(dni);
+    }
+    
+    public Reserva eliminarReserva (int idreserva) throws NonexistentEntityException{
+        controlJpa.eliminarReserva(idreserva);
+        return null;
     }
    
 }
