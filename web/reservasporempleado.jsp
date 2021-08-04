@@ -1,5 +1,5 @@
 <%-- 
-    Document   : reservaspordia
+    Document   : reservasporempleado
     Created on : 03/08/2021, 19:56:08
     Author     : Rodrigo Gallo
 --%>
@@ -50,15 +50,30 @@ else{
             <h1>Listado de reservas</h1>
             <img src="img/logo.png" alt="alt"/>
             <div class="container">
-                <form class="row g-3 needs-validation" novalidate action="reservaspordia.jsp" onsubmit="return validarSubmit()" method="get">
+                <form class="row g-3 needs-validation" novalidate action="reservasporempleado.jsp" method="get">
             
-                <div class="input-group mb-5 input-group-lg">
-                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar-date-fill"></i></span>
-                    <input name="dia" type="date" class="form-control"  placeholder="Seleccione un dia para buscar" aria-label="Desde" aria-describedby="addon-wrapping" required>
-                    <div class="invalid-feedback">
-                    Por favor ingrese una fecha para buscar
-                </div>
-                </div>
+            <div class="input-group mb-3 input-group-lg">
+                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-lines-fill"></i></span>
+                <select name="empleado" type="text" class="form-control" placeholder="Empleado" aria-label="Empleado" aria-describedby="addon-wrapping"  required>
+      
+                    <option value="">Seleccione un empleado</option>
+                    <%
+                    ControladoraLogica control=new ControladoraLogica();
+                    List <Empleado> listaEmpleados = control.traerEmpleados();
+                        for (Empleado empl: listaEmpleados){ %>
+                        <tr>
+                            <% String nombreCompleto=empl.getApellido() + " " + empl.getNombre();  
+                               int dni=empl.getDni(); %>
+                               
+                        <option value="<%=dni %>">
+                            <%=nombreCompleto %>, Dni: <%=dni %>
+                        </option>
+                         <% } %>
+                </select>
+            <div class="invalid-feedback">
+                Por favor seleccione un empleado de la lista para buscar
+            </div>
+            </div>
                 <div class="d-grid gap-2 d-md-block">
                     <input id="botoningresar" type="submit" value="Buscar" class="btn btn-primary">
                     <a class="btn btn-primary" role="button" href="menu.jsp">Volver</a>
@@ -67,7 +82,7 @@ else{
             </div>
       
             
-            <h2>Listado de Reservas del hotel por dia</h2>
+            <h2>Listado de reservas del hotel por empleado</h2>
             
             <div class="table-responsive">
             <table class="table table-primary table-striped">
@@ -87,45 +102,46 @@ else{
 
                 <tbody>
                     <%
-                    ControladoraLogica control=new ControladoraLogica();
                     List <Reserva> ListaReservas = control.traerReservas();
                         for (Reserva reser: ListaReservas){ %>
                         <tr>
-                            <% Date desde=reser.getDesde();
-                               Date hasta=reser.getHasta();
-                               //formateador de fecha
-                               DateFormat formateadorFechaCorta = DateFormat.getDateInstance(DateFormat.SHORT);
-                               //achico cada fecha
-                               String desdechico = (formateadorFechaCorta.format(desde));
-                               String hastachico = (formateadorFechaCorta.format(hasta));
-                               //obtengo los datos                                                                                           
-                               int id=reser.getIdReserva();
-                               Habitacion habi=reser.getHabi();
-                               String nombre=habi.getNombre();
-                               Cliente clie=reser.getClie();
-                               String apellidocliente = clie.getApellido();
-                               String nombrecliente = clie.getNombre();
-                               int dnicliente = clie.getDni();
-                               Empleado empl = reser.getEmpl();
-                               String apellidoEmpleado = empl.getApellido();
-                               String nombreEmpleado = empl.getNombre();
-                               String personas = reser.getPersonas();
-                               Date alta = reser.getAlta();
-                               String altachico = (formateadorFechaCorta.format(alta));
-                               //obtengo el costo calculando con los dias
-                               Long dias = hasta.getTime() - desde.getTime();
-                               int precio = habi.getPrecio();
-                               Long costo = dias * precio /86400000;
+                            <% 
+                               //obtengo el dni del formulario
+                               String empleado = request.getParameter("empleado");
+                               if (empleado != null){
                                
-                               String des = request.getParameter("dia");
-                               int dia = Integer.parseInt(des.substring(8, 10));
-                               int mes = Integer.parseInt(des.substring(6, 7))-1;
-                               int anio = Integer.parseInt(des.substring(0, 4))-1900;
+                                    int dniempleado = Integer.parseInt(empleado);
+                                    Date desde=reser.getDesde();
+                                    Date hasta=reser.getHasta();
+                                    //formateador de fecha
+                                    DateFormat formateadorFechaCorta = DateFormat.getDateInstance(DateFormat.SHORT);
+                                    //achico cada fecha
+                                    String desdechico = (formateadorFechaCorta.format(desde));
+                                    String hastachico = (formateadorFechaCorta.format(hasta));
+                                    //obtengo los datos                                                                                           
+                                    int id=reser.getIdReserva();
+                                    Habitacion habi=reser.getHabi();
+                                    String nombre=habi.getNombre();
+                                    Cliente clie=reser.getClie();
+                                    String apellidocliente = clie.getApellido();
+                                    String nombrecliente = clie.getNombre();
+                                    int dnicliente = clie.getDni();
+                                    Empleado empl = reser.getEmpl();
+                                    String apellidoEmpleado = empl.getApellido();
+                                    String nombreEmpleado = empl.getNombre();
+                                    String personas = reser.getPersonas();
+                                    Date alta = reser.getAlta();
+                                    String altachico = (formateadorFechaCorta.format(alta));
+                                    //obtengo el costo calculando con los dias
+                                    Long dias = hasta.getTime() - desde.getTime();
+                                    int precio = habi.getPrecio();
+                                    Long costo = dias * precio /86400000;
                                
-                               Date diaform = new Date(anio, mes, dia);
-                               
-                               if(diaform.equals(alta)){
-                               %>
+                                    //obtengo el dni del empleado que guardo la reserva en la base
+                                    int dniempleadoreserva = empl.getDni();
+                                    //comparo                               
+                                    if(dniempleadoreserva == dniempleado){
+                                    %>
                         </tr>
                         <td>
                             <%=id %>
@@ -158,7 +174,7 @@ else{
                         <td>
                             <%=altachico %>
                         </td>
-                        <% } }%>
+                        <% } } }%>
 
                 </tbody>
             </table>

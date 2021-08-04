@@ -15,7 +15,7 @@ function VerificarPersonas(){
         CrearDiv();
         }
     }
-    else if (tipo == 'Doble'){
+    else if (tipo == 'Doble,'){
         if (cantidadpersonas > 2){
         CrearDiv();
         }

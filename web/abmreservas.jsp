@@ -149,7 +149,7 @@ else{
             <div class="valid-feedback">
                 Correcto!
             </div>
-        </div>
+            </div>
             
         <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-people-fill"></i></span>
@@ -213,7 +213,6 @@ else{
                         <th scope="col">Costo total</th>
                         <th scope="col">Personas</th>
                         <th scope="col">Alta</th>
-                        
                     </tr>
                 </thead>
 

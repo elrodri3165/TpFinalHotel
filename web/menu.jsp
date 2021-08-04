@@ -52,6 +52,10 @@ else{
                     
                     <a class="btn btn-outline-primary me-2" type="button" href="reservaspordia.jsp?dia=<%=newstring%>">Reservas por dia</a>
                     
+                    <a class="btn btn-outline-primary me-2" type="button" href="reservasporempleado.jsp">Reservas por empleado</a>
+                    
+                    <a class="btn btn-outline-primary me-2" type="button" href="reservasporcliente.jsp">Reservas por cliente</a>
+                    
                     <a class="btn btn-sm btn-outline-secondary" type="button" href="index.jsp">Logout</a>                
                 </form>
             </nav>
