@@ -88,4 +88,8 @@ public class ControladoraPersistencia {
         reserJpa.destroy(idreserva);
     }
     
+    public Reserva traerunaReserva (int idreseriva){
+        return reserJpa.findReserva(idreseriva);
+    }
+    
 }

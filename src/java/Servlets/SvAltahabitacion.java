@@ -38,14 +38,8 @@ public class SvAltahabitacion extends HttpServlet {
         String nombre = request.getParameter("hab-nombre");
         int precio = Integer.parseInt(request.getParameter("precio"));
         String piso = request.getParameter("piso");
-        String tipo = request.getParameter("tipo");
-        
-        
-        request.getSession().setAttribute("hab-nombre", nombre);
-        request.getSession().setAttribute("precio", precio);
-        request.getSession().setAttribute("piso", piso);
-        request.getSession().setAttribute("tipo", tipo);
-        
+        String tipo = request.getParameter("tipo");    
+            
         ControladoraLogica control = new ControladoraLogica();
         control.crearHabitacion(nombre, piso, precio, tipo);
         

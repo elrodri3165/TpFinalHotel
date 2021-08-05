@@ -110,5 +110,9 @@ public class ControladoraLogica {
         controlJpa.eliminarReserva(idreserva);
         return null;
     }
+    
+    public Reserva traerunaReserva (int idreserva){
+        return controlJpa.traerunaReserva(idreserva);
+    }
    
 }

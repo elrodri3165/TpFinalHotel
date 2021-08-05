@@ -18,15 +18,15 @@ import javax.persistence.Id;
 public class Empleado implements Serializable {
 
     @Id
-    int dni;
+    private int dni;
 
     @Basic
-    String Nombre;
-    String Apellido;
-    String Clave;
-    String Cargo;
-    String Fechanacimiento;
-    String Direccion;
+    private String Nombre;
+    private String Apellido;
+    private String Clave;
+    private String Cargo;
+    private String Fechanacimiento;
+    private String Direccion;
 
     public Empleado() {
     }

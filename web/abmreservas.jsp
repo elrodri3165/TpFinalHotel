@@ -46,6 +46,29 @@ else{
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     Date hoy = new Date();
     String newstring = new SimpleDateFormat("yyyy-MM-dd").format(hoy);
+    
+    String desdesession = (String)misession.getAttribute("desde");
+    String hastasession = (String)misession.getAttribute("hasta");
+    String clientesession = (String)misession.getAttribute("cliente");
+    String empleadosession = (String)misession.getAttribute("empleado");
+    String habitacionsession = (String)misession.getAttribute("habitacion");
+    String altasession = (String)misession.getAttribute("alta");
+    if (desdesession != null && hastasession != null && clientesession !=null && empleadosession != null && habitacionsession != null && altasession != null){
+        
+        request.getSession().setAttribute("desde", null);
+        request.getSession().setAttribute("hasta", null);
+        request.getSession().setAttribute("cliente", null);
+        request.getSession().setAttribute("empleado", null);
+        request.getSession().setAttribute("habitacion", null);
+        request.getSession().setAttribute("alta", null);   
+    }else{
+        desdesession = null;
+        hastasession = null;
+        clientesession = null;
+        empleadosession = null;
+        habitacionsession = null;
+        altasession = null;
+    }
     %>
         <div class="container-xl">
               <div class="modal" id="myModal" tabindex="-1">
@@ -75,7 +98,7 @@ else{
             <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar-date-fill"></i></span>
                 <input name="desde" type="date" class="form-control" id="desde" placeholder="Desde" aria-label="Desde" aria-describedby="addon-wrapping" 
-                       onchange="ControlDisp()" onblur="ControlDisp()" required>
+                       onchange="ControlDisp()" onblur="ControlDisp()" required value="<%=desdesession %>">
                 <div class="invalid-feedback">
                     Por favor ingrese la fecha de ingreso
                 </div>
@@ -87,7 +110,7 @@ else{
             <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar-date-fill"></i></span>
                 <input name="hasta" type="date" class="form-control" id="hasta" placeholder="Hasta" aria-label="Hasta" aria-describedby="addon-wrapping" 
-                       onchange="ControlDisp()" onblur="ControlDisp()" required>
+                       onchange="ControlDisp()" onblur="ControlDisp()" required value="<%=hastasession %>">
                 <div class="invalid-feedback">
                     Por favor ingrese la fecha de salida
                 </div>
@@ -99,7 +122,7 @@ else{
             <div class="input-group mb-3 input-group-lg">
             <span class="input-group-text" id="addon-wrapping"><i class="bi bi-list-check"></i></span>
             <select name="habitacion" type="text" class="form-control" id="habitacion" placeholder="Habitacion" aria-label="Habitacion" aria-describedby="addon-wrapping" 
-                    onchange="ControlDisp()" onblur="ControlDisp()" required>
+                    onchange="ControlDisp()" onblur="ControlDisp()" required value="<%=habitacionsession %>">
       
                 <option value="">Seleccione una habitacion</option>
                 
@@ -213,6 +236,7 @@ else{
                         <th scope="col">Costo total</th>
                         <th scope="col">Personas</th>
                         <th scope="col">Alta</th>
+                        <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
                     </tr>
                 </thead>
@@ -279,6 +303,9 @@ else{
                         </td>
                         <td>
                             <%=altachico %>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" role="button" href="SvEditarreserva?id=<%=id %>"><i class="bi bi-pencil-fill"></i></a>
                         </td>
                         <td>
                             <a class="btn btn-danger" role="button" href="SvEliminarreserva?id=<%=id %>"><i class="bi bi-trash-fill"></i></a>

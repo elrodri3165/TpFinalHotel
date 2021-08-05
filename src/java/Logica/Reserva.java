@@ -24,16 +24,16 @@ public class Reserva implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int idReserva;
+    private int idReserva;
     
     @Basic
     @Temporal(javax.persistence.TemporalType.DATE)
-    Date Desde = new Date();
+    private Date Desde = new Date();
     @Temporal(javax.persistence.TemporalType.DATE)
-    Date Hasta = new Date();
+    private Date Hasta = new Date();
     @Temporal(javax.persistence.TemporalType.DATE)
-    Date Alta = new Date();
-    String Personas;
+    private Date Alta = new Date();
+    private String Personas;
     
     @OneToOne
     Habitacion habi;

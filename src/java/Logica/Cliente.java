@@ -20,14 +20,14 @@ import javax.persistence.OneToMany;
 public class Cliente implements Serializable {
     
     @Id
-    int dni;
+    private int dni;
     
     @Basic
-    String Apellido;
-    String Nombre;
-    String Fechanacimiento;
-    String Direccion;
-    String Profesion;
+    private String Apellido;
+    private String Nombre;
+    private String Fechanacimiento;
+    private String Direccion;
+    private String Profesion;
     
     @OneToMany
     List <Reserva> listaReserva;

@@ -21,13 +21,13 @@ public class Habitacion implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int idHabitacion;
+    private int idHabitacion;
     
     @Basic
-    String Piso;
-    String Nombre;
-    String Tipo;
-    int Precio;
+    private String Piso;
+    private String Nombre;
+    private String Tipo;
+    private int Precio;
 
     public Habitacion() {
     }
