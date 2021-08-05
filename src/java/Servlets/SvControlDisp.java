@@ -79,6 +79,10 @@ public class SvControlDisp extends HttpServlet {
         //obtengo el numero de habitacion seleccioanda
         String habi = request.getParameter("habitacion");
         int habitacion = Integer.parseInt(habi);
+        
+        //obtengo el id de reserva cuando edito
+        String idreserva = request.getParameter("idreserva");
+        int id = Integer.parseInt(idreserva);
                 
         //creo la lista de reservas concretadas en la base.
         List <Reserva> ListaReservas = control.traerReservas();
@@ -92,18 +96,20 @@ public class SvControlDisp extends HttpServlet {
                 Habitacion reservaHabitacion = reser.getHabi();
                 int numeroHabitacionreservada = reservaHabitacion.getIdHabitacion();
                 
-                if (habitacion == numeroHabitacionreservada){
-                    if (desde.before(reservaHasta) && desde.after(reservaDesde)){
-                        processRequest(request, response);
-                    }
-                    else if(hasta.before(reservaHasta) && hasta.after(reservaDesde)){
-                        processRequest(request, response); 
-                    }
-                    else if(desde.equals(reservaDesde)){
-                        processRequest(request, response);
-                    }
-                    else if(hasta.equals(reservaHasta)){
-                        processRequest(request, response);
+                if (habitacion == numeroHabitacionreservada ){
+                    if (id != reser.getIdReserva()){
+                        if (desde.before(reservaHasta) && desde.after(reservaDesde)){
+                            processRequest(request, response);
+                        }
+                        else if(hasta.before(reservaHasta) && hasta.after(reservaDesde)){
+                            processRequest(request, response); 
+                        }
+                        else if(desde.equals(reservaDesde)){
+                            processRequest(request, response);
+                        }
+                        else if(hasta.equals(reservaHasta)){
+                            processRequest(request, response);
+                        }
                     }
                 }
             }

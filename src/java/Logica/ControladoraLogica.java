@@ -114,5 +114,22 @@ public class ControladoraLogica {
     public Reserva traerunaReserva (int idreserva){
         return controlJpa.traerunaReserva(idreserva);
     }
+    
+    public void editarReserva(int id, Date desde, Date hasta, Habitacion habi, Empleado empl, Cliente clie, Date alta, String Personas ) throws Exception{
+        
+        Reserva reser = new Reserva();
+       
+        reser.setDesde(desde);
+        reser.setHasta(hasta);
+        reser.setHabi(habi);
+        reser.setEmpl(empl);
+        reser.setClie(clie);
+        reser.setAlta(alta);
+        reser.setPersonas(Personas);
+        reser.setIdReserva(id);
+        
+        controlJpa.editarReserva(reser);
+        
+    }
    
 }

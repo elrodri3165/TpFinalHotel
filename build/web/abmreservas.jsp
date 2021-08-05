@@ -46,28 +46,31 @@ else{
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     Date hoy = new Date();
     String newstring = new SimpleDateFormat("yyyy-MM-dd").format(hoy);
-    
+    String idreserva = (String)misession.getAttribute("idreserva");
     String desdesession = (String)misession.getAttribute("desde");
     String hastasession = (String)misession.getAttribute("hasta");
     String clientesession = (String)misession.getAttribute("cliente");
     String empleadosession = (String)misession.getAttribute("empleado");
     String habitacionsession = (String)misession.getAttribute("habitacion");
     String altasession = (String)misession.getAttribute("alta");
+    String personassession = (String)misession.getAttribute("personas");
     if (desdesession != null && hastasession != null && clientesession !=null && empleadosession != null && habitacionsession != null && altasession != null){
-        
         request.getSession().setAttribute("desde", null);
         request.getSession().setAttribute("hasta", null);
         request.getSession().setAttribute("cliente", null);
         request.getSession().setAttribute("empleado", null);
         request.getSession().setAttribute("habitacion", null);
-        request.getSession().setAttribute("alta", null);   
+        request.getSession().setAttribute("alta", null);
+        request.getSession().setAttribute("personas", null);
     }else{
-        desdesession = null;
-        hastasession = null;
-        clientesession = null;
-        empleadosession = null;
-        habitacionsession = null;
-        altasession = null;
+        desdesession = "";
+        hastasession = "";
+        clientesession = "0";
+        empleadosession = "0";
+        habitacionsession = "0";
+        altasession = "";
+        personassession = "0";
+        idreserva = "0";
     }
     %>
         <div class="container-xl">
@@ -95,6 +98,12 @@ else{
             <div class="container">
                 <form class="row g-3 needs-validation" novalidate action="SVAltareserva" onsubmit="return validarSubmit()" method="post">
             
+            <% if(idreserva != "0"){%>
+            <div class="alert alert-success" role="alert"> 
+                <p>Usted esta modificando una reserva! La habitacion para los dias reservados no se tienen en cuenta como ocupados!</p>
+                <p>Reserva a editar Nª: <%=idreserva %></p>
+            </div>
+            <% } %>                   
             <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar-date-fill"></i></span>
                 <input name="desde" type="date" class="form-control" id="desde" placeholder="Desde" aria-label="Desde" aria-describedby="addon-wrapping" 
@@ -107,6 +116,8 @@ else{
                 </div>
             </div>
             
+            <input id="idreserva" name="idreserva" type="hidden" value="<%=idreserva %>"> 
+              
             <div class="input-group mb-5 input-group-lg">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar-date-fill"></i></span>
                 <input name="hasta" type="date" class="form-control" id="hasta" placeholder="Hasta" aria-label="Hasta" aria-describedby="addon-wrapping" 
@@ -122,11 +133,13 @@ else{
             <div class="input-group mb-3 input-group-lg">
             <span class="input-group-text" id="addon-wrapping"><i class="bi bi-list-check"></i></span>
             <select name="habitacion" type="text" class="form-control" id="habitacion" placeholder="Habitacion" aria-label="Habitacion" aria-describedby="addon-wrapping" 
-                    onchange="ControlDisp()" onblur="ControlDisp()" required value="<%=habitacionsession %>">
+                    onchange="ControlDisp()" onblur="ControlDisp()" required>
       
                 <option value="">Seleccione una habitacion</option>
                 
-                  <% ControladoraLogica control=new ControladoraLogica(); 
+                  <%  
+                    int habitacionint = Integer.parseInt(habitacionsession);
+                    ControladoraLogica control=new ControladoraLogica(); 
                     List <Habitacion> ListaHabitaciones = control.traerHabitaciones();
                         for (Habitacion habie: ListaHabitaciones){ %>
                         
@@ -136,8 +149,8 @@ else{
                                int precio=habie.getPrecio();
                                int id=habie.getIdHabitacion(); 
                             %>
-                            <option value="<%=id %>">
-                                <%=nombre %>, Piso: <%=piso %>, Tipo:  <%=tipo %>, Precio:$ <%=precio %>
+                            <option value="<%=id %>" <%  if (id == habitacionint ){%>selected  <% }%>>
+                                <%=nombre %>, Piso: <%=piso %>, Tipo:  <%=tipo %>, Precio:$ <%=precio %>  
                             </option>
                         <% } %>
                
@@ -156,13 +169,14 @@ else{
       
                 <option value="">Seleccione un cliente</option>
                 <%
+                int clienteint = Integer.parseInt(clientesession);
                 List <Cliente> listaClientes = control.traerClientes();
                         for (Cliente Cli: listaClientes){ %>
                         <tr>
                             <% String nombreCompleto=Cli.getApellido() + " " + Cli.getNombre();  
                                int dni=Cli.getDni(); %>
                                
-                        <option value="<%=dni %>">
+                        <option value="<%=dni%>" <% if (dni == clienteint ){%>selected  <% }%>  >
                             <%=nombreCompleto %>, Dni: <%=dni %>
                         </option>
                          <% } %>
@@ -185,11 +199,14 @@ else{
                 <div class="valid-feedback">
                     Correcto!
                 </div>
+                    <% 
+                    int i=Integer.parseInt(personassession);  
+                    %>
                     <option value="">Por favor seleccione las personas</option>
-                    <option value="1">1 persona</option>
-                    <option value="2">2 personas</option>
-                    <option value="3">3 personas</option>
-                    <option value="4">4 personas</option>
+                    <option value="1" <% if (i == 1 ){%>selected  <% }%> >1 persona</option>
+                    <option value="2" <% if (i == 2 ){%>selected  <% }%> >2 personas</option>
+                    <option value="3" <% if (i == 3 ){%>selected  <% }%> >3 personas</option>
+                    <option value="4" <% if (i == 4 ){%>selected  <% }%> >4 personas</option>
                 </select>
         </div>
             
@@ -308,8 +325,25 @@ else{
                             <a class="btn btn-primary" role="button" href="SvEditarreserva?id=<%=id %>"><i class="bi bi-pencil-fill"></i></a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" role="button" href="SvEliminarreserva?id=<%=id %>"><i class="bi bi-trash-fill"></i></a>
+                            <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#modaleliminar<%=id%>"><i class="bi bi-trash-fill"></i></button>
                         </td>
+                        <div class="modal" id="modaleliminar<%=id %>" tabindex="-1">
+                            <div class="modal-dialog">
+                             <div class="modal-content">
+                               <div class="modal-header">
+                                 <h5 class="modal-title">ATENCION!!!!!</h5>
+                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                               </div>
+                               <div class="modal-body">
+                                 <p>Esta seguro de que desea eliminar una reserva?</p>
+                               </div>
+                               <div class="modal-footer">
+                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+                                 <a type="button" href="SvEliminarreserva?id=<%=id %>" class="btn btn-danger">Eliminar</a>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
                         <% } %>
 
                 </tbody>
@@ -321,6 +355,7 @@ else{
     <script src="js/validar-submit.js" type="text/javascript"></script>
     <script src="js/sumar-total.js" type="text/javascript"></script>
     <script src="js/verificar-personas.js" type="text/javascript"></script>
+    <script src="js/eliminarreserva.js" type="text/javascript"></script>
         <% } %>
     </body>
 </html>

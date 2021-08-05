@@ -65,13 +65,17 @@ public class SvEditarreserva extends HttpServlet {
         
         String altastring = new SimpleDateFormat("yyyy-MM-dd").format(alta);
         
+        String personas = reser.getPersonas();
+        
         //guardo los datos en variables de session
+        request.getSession().setAttribute("idreserva", id);
         request.getSession().setAttribute("desde", desdestring);
         request.getSession().setAttribute("hasta", hastastring);
         request.getSession().setAttribute("cliente", dniclientestring);
         request.getSession().setAttribute("empleado", dniempleadostring);
         request.getSession().setAttribute("habitacion", numerohabitacionstring);
         request.getSession().setAttribute("alta", altastring);
+        request.getSession().setAttribute("personas", personas);
         
         response.sendRedirect("abmreservas.jsp");
         

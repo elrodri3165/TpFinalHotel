@@ -92,4 +92,9 @@ public class ControladoraPersistencia {
         return reserJpa.findReserva(idreseriva);
     }
     
+    public Reserva editarReserva (Reserva reser) throws Exception{
+        reserJpa.edit(reser);
+        return null;
+    }
+    
 }

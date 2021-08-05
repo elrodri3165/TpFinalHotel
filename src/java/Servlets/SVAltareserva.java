@@ -9,6 +9,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -72,14 +74,27 @@ public class SVAltareserva extends HttpServlet {
         
         //creo fecha de hoy
         Date hoy = new Date();
-                
-        //creo los objetos habitacion, reserva, cliente y empleado con los id
+        
+        String idreserva = request.getParameter("idreserva");
+        int id = Integer.parseInt(idreserva);
+        
         ControladoraLogica control = new ControladoraLogica();
+        
+        //creo los objetos habitacion, reserva, cliente y empleado con los id
         Empleado empl = control.traerunEmpleado(empleado);
         Habitacion habit = control.traerHabitacion((int) habitacion);
         Cliente cli = control.traerCliente(cliente);
         
-        control.crearReserva(desde, hasta, habit, empl, cli, hoy, personas);
+        if (id == 0){
+            // de una reserva nueva      
+            control.crearReserva(desde, hasta, habit, empl, cli, hoy, personas);
+        }else{
+            try {
+                control.editarReserva(id, desde, hasta, habit, empl, cli, hoy, personas);
+            } catch (Exception ex) {
+                Logger.getLogger(SVAltareserva.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
                 
         response.sendRedirect("abmreservas.jsp");
         
