@@ -1,0 +1,3 @@
+las habitaciones multiples son para maximo 4 personas.
+realize el abm completo de reservas.
+clientes, empleados, y habitaciones no se pueden eliminar, dado que estan releacionadas a la reserva y se perderian datos.
